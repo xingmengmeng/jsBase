@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var name='珠峰';
+    var age=500;
+    //等号的作用是用来赋值的；
+    name=(function(name,age){//name=‘珠峰’ age=undefined ;; 形参就是私有变量
+        arguments[0]='珠峰培训';//name='珠峰培训'
+        age=age||this.age;//age=undefined||window.age; 500
+        console.log(name,age);//'珠峰培训',500
+    })(name);
+    console.log(name,age)//'undefined，500
+</script>
+</body>
+</html>

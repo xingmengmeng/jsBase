@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: -webkit-linear-gradient(top,lightgreen,lightgoldenrodyellow,lightpink);
+            margin: 50px auto;
+            font-size: 100px;
+            text-align: center;
+            line-height: 150px;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div>0</div>
+<script>
+    var oDiv=document.getElementsByTagName('div')[0];
+    //思路1：设全局变量
+   /* var n=0;
+    oDiv.onclick=function(){
+        this.innerHTML=++n;
+    }*/
+    //思路2：闭包--问题：形成不销毁的私有作用域
+    /*(function(){
+        var n=0;
+        oDiv.onclick=function(){
+            this.innerHTML=++n;
+        }
+    })()*/
+    /*oDiv.onclick=(function(){
+        var n=0;//1 2 ....
+        return function(){
+            this.innerHTML=++n;
+        }
+    })();*/
+    //思路3：
+    /*oDiv.onclick=function(){
+        this.innerHTML++;//++默认进行数据类型转换
+        //this.innerHTML=parseInt(this.innerHTML)+1;
+    }*/
+    //思路4：比较推荐的
+    oDiv.num=0;
+    oDiv.onclick=function(){
+        this.innerHTML=++this.num;
+    }
+</script>
+</body>
+</html>

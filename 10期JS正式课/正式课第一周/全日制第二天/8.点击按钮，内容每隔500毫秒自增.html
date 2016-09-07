@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            width: 150px;
+            float: left;
+            margin:10px;
+        }
+        .box input{
+            width: 100%;
+            display: block;
+            height: 40px;
+        }
+        .box p{
+            width: 100%;
+            height: 100px;
+            font-size: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <input type="button" value="点击我吧"/>
+    <p>0</p>
+</div>
+<div class="box">
+    <input type="button" value="点击我吧"/>
+    <p>0</p>
+</div>
+<div class="box">
+    <input type="button" value="点击我吧"/>
+    <p>0</p>
+</div>
+<div class="box">
+    <input type="button" value="点击我吧"/>
+    <p>0</p>
+</div>
+<script>
+    //1.想实现多组都是一样的功能，先实现一组元素的功能
+    //2.把可变的部分单独拎出去，其他的都用函数封装起来；把之前可变的部分作为形参；以后调用的时候直接传实参即可
+    var aDiv=document.getElementsByTagName('div');
+    (function(){
+        function clickFn(ele){
+            var oBtn=ele.getElementsByTagName('input')[0];
+            var oP=ele.getElementsByTagName('p')[0];
+            var n=0;
+            var timer=null;
+            var bOk=true;
+            oBtn.onclick=function(){
+                if(bOk){
+                    fn();
+                }else{
+                    clearTimeout(timer);
+                }
+                bOk=!bOk;
+                function fn(){
+                    clearTimeout(timer); //一般在开启定时器前，都会先关闭没用的定时器；
+                    oP.innerHTML=++n;
+                    timer=setTimeout(arguments.callee,500)
+                }
+            }
+        }
+        window.clickFn=clickFn;
+    })(); //把闭包放上面，因为代码从上到下的执行且闭包不会进行预解释；
+    for(var i=0; i<aDiv.length; i++){
+        clickFn(aDiv[i]);
+    }
+
+</script>
+</body>
+</html>

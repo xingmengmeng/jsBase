@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        this.x=100;
+    }
+    //Fn.prototype:天生自带一个属性constructor:Fn;
+    /*Fn.prototype.showX=function(){
+        alert(this.x);
+    }*/
+    //我们可以给原型上自己添加一个对象；但是这个对象默认没有constructor，所以实例f1找到constructor：Object;
+    //解决措施：
+    Fn.prototype={
+        constructor:Fn,//必须手动添加constructor;
+        showX:function(){}
+    };
+    var f1=new Fn;
+    console.dir(f1);
+    /*
+    * x:100;
+    * __proto__:
+    *   constructor:Fn,
+    *   showX:function.....
+    * __proto__:Object
+    *   constructor:Object,
+    *   toString:....
+    * */
+    /*
+    * x:100;
+    * __proto__:
+    * showX:function...
+    * __proto__:Object
+    * constructor:Object;
+    * toString,,..
+    *
+    *
+    * */
+</script>
+</body>
+</html>

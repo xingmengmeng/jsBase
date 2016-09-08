@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //原型链继承核心：把父类私有+公有的属性，都作为子类公有的
+    function F(){//父类私有的属性
+        this.x=100;
+    }
+    F.prototype.showX=function(){};//父类公有的属性
+
+    function S(){};//只是S类；
+    S.prototype=new F;
+    S.prototype.constructor=S;
+    console.dir(new F)
+    console.dir(new S)
+    /*
+    * 私有属性没有
+    * __proto__:
+    *   父类私有的属性x:100
+    *   __proto__:
+    *   constructor:F,
+    *   showX:fun,,....
+    * */
+</script>
+</body>
+</html>

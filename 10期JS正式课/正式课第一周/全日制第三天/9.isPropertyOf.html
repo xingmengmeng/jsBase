@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        this.x=100;
+        this.y=200;
+        this.showX=function(){}
+    }
+    Fn.prototype.showX=function(){}
+    var f1=new Fn;
+    //alert(f1.showX===Fn.prototype.showX);
+    //alert(f1.__proto__.showX==f1.showX);
+    //alert(f1.__proto__.showX===Fn.prototype.showX)
+    //__proto__ :找到当前实例f1所属类的原型
+   alert(Fn.prototype.isPrototypeOf(f1));//前面这个对象Fn.prototype； 是否在f1这个对象的原型链上
+</script>
+</body>
+</html>

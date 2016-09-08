@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        this.x=100;
+        this.y=200;
+    }
+    Fn.prototype.showX=function(){}
+    var f1=new Fn;
+    //alert('showX' in f1); //in:判断是否为元素身上的属性 私有+公有
+    //alert(f1.hasOwnProperty('showX')); //判断是否为私有属性
+    //需求：写一个方法，判断是否为公有属性；
+    /*
+    * 1.参数2个：属性名  对象/实例
+    * 2.返回值：是布尔数据类型；
+    * */
+    alert(hasPubProperty('showX',f1));
+    function hasPubProperty(attr,obj){
+        //attr 是obj上的属性，并且，不是私有属性
+        return attr in obj && !obj.hasOwnProperty(attr);//学校的思想
+       // return attr in obj != obj.hasOwnProperty(attr);//同学的思想
+    }
+
+</script>
+</body>
+</html>

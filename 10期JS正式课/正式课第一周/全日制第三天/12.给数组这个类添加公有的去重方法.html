@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[1,2,1,2,3,4,2,3,3];
+    Array.prototype.rmSame=function(){
+        //this--实例ary;
+        for(var i=0; i<this.length; i++){
+            var cur=this[i];
+            for(var j=i+1; j<this.length; j++){
+                if(cur==this[j]){
+                    this.splice(i,1);
+                    i--;
+                }
+            }
+        }
+        return this;
+    };
+    ary.rmSame().sort(function(a,b){return a-b}).pop();
+    //能否进行链式操作，关键看函数执行完的返回值到底是什么；
+    //Array.prototype.push=function(){};
+    Array.prototype={};//你邪恶的想法：干掉数组所有的公有方法；
+    //系统拒绝用户 通过原型批量修改 系统对象的公有属性和方法；
+    //但是，我们可以一个个的修改；
+    ary.push('llalalla');
+    //alert(ary);
+    alert(ary.__proto__.push)//在IE下，其实也有__proto__;但是，IE浏览器拒绝用户使用__proto__去修改内置对象的属性
+
+</script>
+</body>
+</html>

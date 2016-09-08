@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){//创建一个构造函数--构造函数中存的都是私有的属性和方法；
+        this.x=100;
+        this.y=200;
+    }
+    //原型prototype上，放的都是公有的属性和方法
+    Fn.prototype.showX=function(){
+        alert(this.x);
+    }
+    //创建实例
+    var f1=new Fn;
+    f1.showX();
+    /*var ary=[0];
+    //alert(ary[1]);//当属性没有属性值的时候，我们拿到的值是undefined;
+    console.dir(ary);*/
+</script>
+</body>
+</html>

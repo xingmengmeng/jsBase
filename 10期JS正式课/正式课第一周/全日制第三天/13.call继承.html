@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*//call是用来改变this指向的
+    var obj={};
+    function fn(n,m){
+        alert(this+(n+m))
+    }
+    fn.call(obj,1,2);
+    //作用：把call前面的函数中的this关键字，改为call的第一个参数
+    //call的第二个参数开始，就相当于给fn中的参数从左往右一个个的赋值；*/
+    //call继承核心：把父类的私有属性和方法，做为子类私有的属性和方法；
+    //说明：子类只继承了父类私有的属性和方法；跟父类公有的属性和方法无关
+    function F(){//父类私有属性
+        this.x=100; //this-F new出来的实例
+        this.y=200;
+        this.z=300;
+    };
+    F.prototype.showX=function(){};//父类公有属性
+    var f=new F;
+    console.dir(f);
+    /*
+    * this.x=100;
+     this.y=200;
+     this.z=300;
+     __proto__:
+     constructor:F;
+     showX.....
+    *
+    *
+    * */
+    function S(){
+        //this-》指的是S new出来的实例
+        F.call(this);
+    }
+    var s=new S;
+    s.x='1212334'
+    console.dir(s);
+    /*
+    *  this.x=100;
+     this.y=200;
+     this.z=300;
+     __proto__:
+     constructor:S;
+    *
+    *
+    *
+    * */
+
+
+</script>
+</body>
+</html>

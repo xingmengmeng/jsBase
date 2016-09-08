@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Person(){
+        var a=123;
+        /*this.fn=function(){
+            alert('我的名字是珠峰')
+        }*/
+
+    }
+    //把功能相同的代码，都放在原型上；
+    Person.prototype.fn=function(){
+        alert('我的名字是珠峰')
+    };
+    //每次调用Person(),系统都会默认为我们创建一个新对象，我们都会给新对象添加属性和方法；所以，这些属性和方法，都是属于对象私有的属性和方法，所以，即使功能相同，他们也不相等；
+    var p1=new Person;
+    var p2=new Person;
+    /*p1.fn();
+    p2.fn();*/
+   // alert(p1.fn===p2.fn);
+    //现在需求，让p1.fn===p2.fn 真正的相等，相同的功能，公有一个方法；
+    var ary1=new Array;
+    var ary2=new Array;
+    ary1.push('345','lalaa');
+    alert(ary1)
+    //alert(ary1.push==ary2.push);
+</script>
+</body>
+</html>

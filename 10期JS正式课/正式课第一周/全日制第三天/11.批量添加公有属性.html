@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        this.x=100;
+    }
+    /*var obj=Fn.prototype;
+    obj.fn1=function(){};
+    obj.fn2=function(){};
+    obj.fn3=function(){};
+    obj.fn4=function(){};
+    obj.fn5=function(){};
+    obj.fn6=function(){};*/
+    Fn.prototype={//自己给原型上添加的对象，一定没有constructor。必须手写
+        constructor:Fn,
+        fn1:function(){},
+        fn2:function(){},
+        fn3:function(){},
+        fn4:function(){},
+        fn5:function(){}
+    }
+</script>
+</body>
+</html>

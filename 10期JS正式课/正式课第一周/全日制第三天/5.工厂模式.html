@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*function Person(name,age){
+        var obj={}; //1.创建一个空对象
+        //2.下面三步就是给对象添加属性和方法
+        obj.name=name;
+        obj.age=age;
+        obj.fn=function(){
+            alert('我的名字是'+this.name);
+        };
+        //3.输出对象；
+        return obj;
+    }*/
+    function Person(name,age){
+        //var obj={}; //1.创建一个空对象
+        //2.下面三步就是给对象添加属性和方法
+        this.name=name;
+        this.age=age;
+        this.fn=function(){
+            alert('我的名字是'+this.name);
+        };
+        //3.输出对象；
+        //return obj;
+    }
+    var p1=new Person('zhufeng',8);
+
+    var ary=new Array();//实例创建--构造函数：实例 和 类在打交道；
+    var str=new String();
+    var ary=[];//字面量方式创建
+    var p2=new Person('刘跃林',8);
+    p1.fn();
+    p2.fn();
+    alert(p1.age)
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var n=[20,40,60];
+    /*function fn(n){
+        n[1]=50;
+        alert(n); //【20,50,60】
+        n=456;
+        alert(n);//456
+    }
+    fn(n);
+    alert(n) //【20,50,60】*/
+    function fn(n){
+        n[0]=100;
+        console.log(n);//[100,40,60]
+        n=[];
+        n[n.length]=300;
+        console.log(n); //[300]
+    }
+    fn(n);
+    console.log(n)//[100,40,60]
+</script>
+</body>
+</html>

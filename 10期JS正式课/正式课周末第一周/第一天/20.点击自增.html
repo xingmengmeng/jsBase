@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: -webkit-linear-gradient(top,lightpink,lightgoldenrodyellow,lightgreen);
+            text-align: center;
+            line-height: 100px;
+            font-size: 50px;
+            margin:50px auto;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div>0</div>
+<script>
+    var oDiv=document.getElementsByTagName('div')[0];
+    //1.思路1：全局变量-不推荐
+    /*var n=0;
+    oDiv.onclick=function(){
+        this.innerHTML=++n;
+    }*/
+    //2.思路2：直接对DOM的操作--对DOM过多的操作，耗性能，不建议
+    /*oDiv.onclick=function(){
+        this.innerHTML++;//++ 可以自动进行数据类型的转换
+        //this.innerHTML=Number(this.innerHTML)+1;
+    }*/
+    //3.闭包：
+    /*(function(){
+        var n=0;
+        oDiv.onclick=function(){
+            this.innerHTML=++n;
+        }
+    })();*/
+    /*oDiv.onclick=(function(){
+        var n=0;
+        return function(){
+            this.innerHTML=++n;
+        }
+    })();*/
+    //4.自定义属性
+    oDiv.n=0; //自定义属性n=0；
+    oDiv.onclick=function(){
+        this.innerHTML=++this.n;
+    }
+</script>
+</body>
+</html>

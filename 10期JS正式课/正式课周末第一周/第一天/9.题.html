@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function fn() {
+        var i = 10;
+        return function (n) {
+            console.log(n + (++i));
+        }
+    }
+    var f = fn();
+    f(15);//fn不销毁
+    f(20);//fn不销毁
+    fn()(15);//不立即销毁
+    fn()(20);//不立即销毁
+    fn()(30);//不立即销毁
+    f(30);//fn不销毁
+</script>
+</body>
+</html>

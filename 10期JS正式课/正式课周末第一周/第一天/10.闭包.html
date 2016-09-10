@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>0</div>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<script>
+    var name='zhufeng';
+    var aDiv=document.getElementsByTagName('div');
+    /*(function(){
+        var name='123';
+        var age=456;
+        window.age=age;
+        alert(name)
+    })();
+    alert(age)*/
+    //alert(name)
+    //功能：获取当前元素的上一个哥哥元素
+    (function(){
+        function prev(curEle){
+            //1.浏览器判断--标准浏览器直接就支持
+            if(curEle.previousElementSibling){
+                return curEle.previousElementSibling;
+            }
+            //2.非标准浏览器兼容处理
+            var pre=curEle.previousSibling; //上一个哥哥节点
+            while(pre && pre.nodeType!==1){//while循环属于同步；
+                pre=pre.previousSibling;
+            }
+            return pre; //两种情况：1：null 2:元素节点
+        }
+        window.prev=prev;
+    })();
+   console.log(prev(aDiv[4]).innerHTML) ;
+</script>
+</body>
+</html>

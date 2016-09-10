@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*涉及的考点：
+    * 1.带var 和 不带var的区别:不带var的都是window的全局属性；
+    * 2.无论条件是否成立，都会进行预解释--IE浏览器
+    * 3.运算符的优先级：算术运算符>比较运算符>逻辑运算符>赋值运算符
+    * 4.自执行函数不会进行预解释
+    * */
+    //此题只能在IE下运行
+    f=function(){return true};
+    g=function(){return false};
+    (function(){
+        if(g()&&[]==![]){
+            f=function(){return false;}
+            function g(){return true;}
+        }
+    })();
+    alert(f());
+    alert(g());
+</script>
+</body>
+</html>

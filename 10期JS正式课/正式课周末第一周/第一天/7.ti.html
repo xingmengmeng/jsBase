@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    * 考点：
+    * 1. || 前面为假，才会走后面；
+    * 2.函数的返回值：如果没有返回值，返回的是undefined;
+    * 3. = 的作用：重新赋值；
+    *
+    * */
+    var name='珠峰';
+    var age=500;
+    name=(function(name,age){
+        arguments[0]='珠峰培训';
+        age=age||this.age;//|| 前面为假，才会走后面； && 前面为真才会走后面；
+        console.log(name,age);//珠峰培训  500
+    })(name);
+    console.log(name,age) //undefined 500
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary = [1, 2, 3, 4]; //[0, 2, 3, 4]
+    function fn(ary) { //var ary= [0, 2, 3, 4]; var ary=[0]
+        ary[0] = 0;//地址指向
+        ary = [0];//
+        ary[0] = 100; //ary=[100];
+        return ary; //【100】
+    }
+    var res = fn(ary); //[100]
+    console.log(ary);//[0, 2, 3, 4]
+    console.log(res);//[100]
+</script>
+</body>
+</html>

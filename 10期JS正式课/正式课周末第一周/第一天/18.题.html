@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //此题只能在IE10及10以下运行：
+    //不要在条件判断里声明变量，或 写函数的定义阶段，因为各大浏览器对JS的预解释是不同的
+    /*if(!("a" in window)){//var a;
+        var a=1;
+    }
+    alert(a);//undefined*/
+    var n=14;
+    if(n%2==0){
+        function fn(){
+            alert('偶数')
+        }
+        fn()
+    }else{
+        function fn(){
+            alert('奇数')
+        }
+        fn()
+    }
+</script>
+</body>
+</html>

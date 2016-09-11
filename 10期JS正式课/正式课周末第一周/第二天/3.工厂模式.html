@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function person(name,age){
+        //1.创建一个空对象
+        var obj={};
+        //2.给对象添加属性和方法
+        obj.name=name;
+        obj.age=age;
+        obj.showName=function(){
+            alert(this.name)
+        }
+        //3.输出对象
+        return obj;
+    }
+    var p1=person('zhufeng',8);
+    var p2=person('lihaishuang',18);
+    var ary1=new Array();
+    /*alert(p1.name)
+    alert(p2.name)*/
+    //p2.showName();
+    console.dir(p1);
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Person(name,age){
+        //构造函数中的this，都是new 出来的实例；
+        this.name=name;
+        this.age=age;
+        this.showName=function(){
+            alert(this.name);
+        };
+        return function(){
+
+        };
+    }
+    var p1=new Person('珠峰',8);
+    /*
+    * 只要在函数调用前加了new,系统会默认帮我们干两件事：
+    * 1.默认帮我们创建一个对象；系统的对象是this；
+    * 2.系统默认会帮我们返回对象this；
+    *
+    * */
+    p1.showName();
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){//构造函数中都是私有属性
+        this.x=100;
+    }
+    Fn.prototype.showX=function(){};//原型上都是公有属性
+    var f=new Fn;
+    alert(Object.prototype.isPrototypeOf(f))//前一个对象 是否在 后一个对象的 原型链上
+    //in 判断属性是否在对象上： 私有+公有
+   // alert('showX' in f);
+    //alert(f.hasOwnProperty('showX'));//判断是否为私有属性
+    //需求：封装一个方法，功能：判断 是否为公有属性
+    //参数2个：1.属性 2.对象   返回值：布尔值
+    //思路：是对象上的属性 并且 不是私有属性；
+    function hasPubProperty(attr,obj){
+        return attr in obj && !obj.hasOwnProperty(attr);
+    }
+
+</script>
+</body>
+</html>

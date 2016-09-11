@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={showX:function(){alert('我是公有方法')},name:'zhfueng'};
+    //var obj2=Object.create(obj);//obj是obj2的原型：obj2应该是个实例； obj是这个实例的原型；
+    //我们做的这个是兼容版的；
+    //obj做为返回值的原型：返回值应该是个实例
+    var obj2=myObject(obj);
+    function myObject(obj){
+        function Tmp(){};
+        Tmp.prototype=obj;
+        return new Tmp;
+    }
+    function F(){
+        this.x=100;
+    }
+    F.prototype=obj;
+
+    function S(){
+        this.y=200;
+    }
+    S.prototype=obj2;
+    var s=new S;
+    console.dir(s);
+    s.showX();
+
+
+</script>
+</body>
+</html>

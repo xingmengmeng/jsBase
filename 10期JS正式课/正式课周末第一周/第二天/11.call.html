@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={};
+    function fn(n,m){
+       alert(this+(n+m))
+    }
+    fn.call(obj,2,3);
+    //call的作用：改变函数的this指向，同时让函数立即执行
+    //call的第一个参数，用来改变fn中this关键字的指向；
+    //从第二个参数开始，相当于给fn从左往右一个个的传参；
+</script>
+</body>
+</html>

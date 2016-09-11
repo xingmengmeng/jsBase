@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){//构造函数：私有属性
+        this.x=100;
+        this.y=200;
+    }
+    Fn.prototype={
+        constructor:Fn,
+        showX:function(){
+            alert(this.x);
+        }
+    }
+    //prototype：存放的都是公有属性
+    /*Fn.prototype.showX=function(){
+        alert(this.x);
+    };*/
+    var f1=new Fn;
+   // alert(f1.constructor)
+    alert(f1 instanceof Fn); //判断前面的实例，是否属于 后面的类
+    //alert([].constructor)
+    /*f1.showX();*/
+    //alert(f1.showX===Fn.prototype.showX)
+    /*alert(f1.__proto__.showX===f1.showX)
+    alert(f1.__proto__.showX===Fn.prototype.showX)*/
+</script>
+</body>
+</html>

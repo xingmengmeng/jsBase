@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function F(){
+        this.x=100;
+    }
+    F.prototype.showX=function(){};
+
+    function S(){
+        F.call(this);//call继承
+    }
+
+    function Tmp(){}; //创建一个空类：过滤的作用：只把F类公有的方法拿过来；
+    Tmp.prototype= F.prototype;//把父类公有的方法，都过滤到空类的公有方法上；
+    S.prototype=new Tmp;
+    S.prototype.constructor=S;//重新更改constructor指向
+
+    var s=new S;
+    console.dir(s);
+    /*
+    * x:100;
+    * __proto__:
+    *constructor：S
+    * __proto__:
+    *   constructor:F,
+    *   showX:.....
+    *
+    *
+    * */
+</script>
+</body>
+</html>

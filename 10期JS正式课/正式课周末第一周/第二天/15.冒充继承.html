@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    // 冒充继承：把父类 私有+公有 的属性和方法，都继承给了子类 私有的 属性和方法
+    /*function extend(pre,nex){
+        for(var attr in pre){
+            nex[attr]=pre[attr];
+        }
+        return nex;
+    }*/
+    function F(){
+        this.x=100;
+    }
+    F.prototype.showX=function(){};
+    var f=new F;
+    console.dir(f)
+
+    function S(){
+        for(var attr in f){
+            this[attr]=f[attr];
+        }
+    }
+    var s=new S;
+    console.dir(s);
+
+
+</script>
+</body>
+</html>

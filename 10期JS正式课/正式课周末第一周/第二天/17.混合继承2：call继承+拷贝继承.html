@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //功能：让后面的对象，继承前面的对象；
+    function extend(pre,nex){
+        for(var attr in pre){
+            nex[attr]=pre[attr];
+        }
+        return nex;
+    }
+    function F(){
+        this.x=100;
+    }
+    F.prototype.showX=function(){};
+
+    function S(){
+        F.call(this); //完成call继承： 子类私有 继承 父类私有
+    }
+    extend(F.prototype, S.prototype); //拷贝继承；
+    var s=new S;
+    console.dir(s);
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //继承：子类 继承 父类 的属性和方法
+    //call继承核心：把父类私有的属性和方法，继承给了子类私有的属性和方法；
+    // 子类继承父类 私有的属性和方法；跟父类公有方法无关；
+    function F(){//this-F构造函数new出来的实例；
+        this.x=100;
+        this.y=200;
+        this.z=300;
+    }
+    F.prototype.showX=function(){};
+    var f=new F;
+    console.dir(f);
+    /*
+    * x:100,y:200,z:300
+    * __proto__:
+    * constructor:F,
+    * showX:......
+    * */
+
+    function S(){//this：S构造函数 new 出来的实例；
+       F.call(this);
+    }
+    var s=new S;
+    s.x=400;
+    console.dir(s);
+    /*
+    * x=100,y=200,z=300
+    * __proto__:
+    * constructor:S;
+    * */
+
+</script>
+</body>
+</html>

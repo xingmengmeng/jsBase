@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){ //构造函数-私有属性
+        this.x=100;
+        this.y=200;
+    }
+    Fn.prototype={//原型
+        x:200,
+        showX:function(){
+            alert(this.x+','+this.y)
+            alert(this.x+this.y)
+        }
+    }
+    var f1=new Fn;//实例
+    //alert(f1.showX==Fn.prototype.showX);
+    //f1.showX();
+    //f1.__proto__.showX();
+    //Fn.prototype.showX();
+    //alert(f1.constructor)
+    /*//数组中，把常见的方法都封在公有属性prototype上；
+    var ary1=new Array('1','2'); //数组实例
+    var ary2=new Array; //另一个数据实例；
+    //console.dir(ary1);
+    /!*
+    * 私有的
+    * __proto__:从他之后都是公有的
+    * *!/
+   // Array.prototype.push=function(){};//一个个的修改系统的公有方法；
+    Array.prototype={}; //批量修改 ：系统避免用户通过对象，批量修改系统内置的公有方法；
+
+    ary1.push('3');
+    alert(ary1);*/
+</script>
+</body>
+</html>

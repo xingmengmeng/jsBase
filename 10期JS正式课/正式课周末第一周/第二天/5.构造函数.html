@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){//构造函数中，存放的都是私有属性；
+        this.x=100;
+        this.y=200;
+        /*this.showX=function(){
+            alert(this.x)
+        }*/
+    }
+    Fn.prototype.showX=function(){
+        alert(this.x)
+    };
+    var f1=new Fn; //f1
+    var f2=new Fn;
+    /*f1.showX();
+    f2.showX();*/
+    alert(f1.showX===f2.showX) ;//showX这个方法，属于私有方法；
+    /*var ary1=new Array;
+    ary1.push('明天放假','lala'); //['明天放假']
+    console.log(ary1)*/
+</script>
+</body>
+</html>

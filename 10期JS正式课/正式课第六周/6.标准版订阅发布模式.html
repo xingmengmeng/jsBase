@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //面向对象封装的订阅发布：on-绑定事件  fire-发布事件  off-解除事件
+    function EventEmitter(){} //事件的订阅发布类；
+    EventEmitter.prototype.on=function(type,fn){//绑定事件：在某个行为上绑定某些方法；
+        if(!this['aEmitter'+type]){
+            this['aEmitter'+type]=[];
+        }
+        var a=this['aEmitter'+type];
+        for(var i=0; i< a.length; i++){
+            if(a[i]==fn) return;
+        }
+        a.push(fn);
+    };
+    EventEmitter.prototype.fire=function(type,e){//事件发布
+        var a=this['aEmitter'+type];
+        if(a && a.length){
+            for(var i=0; i< a.length; i++){
+                if(typeof a[i]=='function'){
+                    a[i].call(this,e)
+                }else{
+                    a.splice(i,1);
+                    i--;
+                }
+            }
+        }
+    };
+    EventEmitter.prototype.off=function(type,fn){
+        var a=this['aEmitter'+type];
+        if(a && a.length){
+            for(var i=0; i< a.length; i++){
+                if(a[i]==fn){
+                    a[i]=null;
+                    break;
+                }
+            }
+        }
+    };
+
+    var event=new EventEmitter;
+    event.on('boiling',coffee);
+    event.on('boiling',water);
+    event.on('boiling',shower);
+
+    boiling();
+    function boiling(){
+        setTimeout(function(){
+            console.log('水开了');
+            event.fire('boiling');
+        },1000)
+    }
+    //................................
+    function coffee(){
+        console.log('水开后，我要泡咖啡')
+    }
+    function water(){
+        console.log('我要用开水浇花')
+    }
+    function  shower(){
+        console.log('用开水洗澡')
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+

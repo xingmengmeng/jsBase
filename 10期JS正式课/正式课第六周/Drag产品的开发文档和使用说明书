@@ -1,0 +1,45 @@
+Drag产品的开发文档和使用说明书
+    产品功能：让某个元素具有拖拽的功能：
+    1）产品基本用法：
+        如果想使用此产品，需要做以下两部：
+        1）创建一个ID为div1的元素  var oDiv=document.getElementById('div1')
+        2）通过构造函数创建实例：var obj=new Drag(oDiv);
+    2）Drag产品基本构成：（三部分）
+        1)Drag.prototype.down  按下时开始拖拽；
+        2)Drag.prototype.move  拖拽移动的过程；
+        3)Drag.prototype.up    当拖拽结束的时候；
+        该Drag产品有四个属性：
+        this.x,this.y,this.mx,this.my;
+        该产品有一个必备的属性：this.ele->他决定了让哪个元素具有拖拽功能；
+    3）产品新功能的扩展:
+        1）在down下留一个接口  this.fire('selfDown',e);//开发者留给客户的接口
+
+        您可以通过 obj.on('selfDown',函数/函数名) 给mousedown下扩充新功能；
+
+        2)在move下留一个接口 this.fire('selfMove',e);
+
+        您可以通过 obj.on('selfMove',函数/函数名) 给mousedown下扩充新功能；
+
+        3)在up下留一个接口 this.fire('selfUp',e);
+
+        您可以通过 obj.on('selfUp',函数/函数名) 给mousedown下扩充新功能；
+
+    你可以通过以上三个接口，来扩展Drag产品的功能；
+
+Drag产品1.0版本升级
+    升级版本已经扩充了一个限制范围拖拽的功能，您可以通过obj.range({left:0,right:500,top:0,bottom:400})
+
+Drag产品1.1版本升级
+    升级版本扩充功能：
+    1）当拖拽开始的时候，出现边框；
+    2）当拖拽结束的时候，边框消失;
+    使用方法：obj.border();
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //核心：
+    // 1.烧水和想做的事情提前绑定到一起； --事件绑定
+    // 2.当水开了以后，通知你去干提前绑定好的事情；--发布事件（通知）
+    /*
+    * 当水开了以后，记得通知我：
+    * 1）coffee
+    * 2）water
+    * 3）shower
+    * */
+    var obj={}; //obj.aa=[];
+    function  on(type,fn){
+        if(!obj[type]){
+            obj[type]=[];
+        }
+        var a=obj[type];
+        for(var i=0; i< a.length; i++){
+            if(a[i]==fn) return;
+        }
+        a.push(fn);
+    }
+    function fire(type){//通知提前绑定好的方法，进行执行的
+        // 1.拿到数组：on方法中，所有的方法，都绑定在obj.boiling=[coffee,water,shower]
+        var a=obj[type];
+        //2.把数组中所有的方法都进行顺序调用；
+        for(var i=0; i< a.length; i++){
+            a[i]();
+        }
+    }
+    //提前绑定：
+    on('boiling',coffee);
+    on('boiling',water);
+    on('boiling',shower);
+
+    boiling();
+    function  boiling(){
+        setTimeout(function(){
+            console.log('水开了，你可以干事情了');
+            fire('boiling');
+        },1000)
+    }
+
+    function coffee(){
+        console.log('水开后，我要泡咖啡')
+    }
+    function water(){
+        console.log('我要用开水浇花')
+    }
+    function  shower(){
+        console.log('用开水洗澡')
+    }
+</script>
+</body>
+</html>

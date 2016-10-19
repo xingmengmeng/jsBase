@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="js/event.js"></script>
+<script>
+    var obj={};
+    //提前预约：等你结婚的时候，我要干什么事情；
+    marry();
+    function marry(){
+        setTimeout(function(){
+            console.log('哈哈，我终于结婚了');//--说明结婚这件事发生了；
+            fire.call(obj,'selfmarry');
+        },6000);
+    }
+    on(obj,'selfmarry',liyifeng);
+    on(obj,'selfmarry',songzuying);
+    on(obj,'selfmarry',erye);
+    on(obj,'selfmarry',maike);
+
+    function liyifeng(){
+        console.log('我是呆萌李易峰')
+    }
+    function songzuying(){
+        console.log('宋祖英：今天是个好日子')
+    }
+    function erye(){
+        console.log('我是盗墓的')
+    }
+    function maike(){
+        console.log('我是迈克杰克逊，我从土里蹦出来跳太空舞')
+    }
+</script>
+</body>
+</html>

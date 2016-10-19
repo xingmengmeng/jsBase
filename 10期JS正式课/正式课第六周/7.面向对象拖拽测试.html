@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"><img src="img/1.png" alt=""></div>
+<script src="js/event.js"></script>
+<script src="js/Drag.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    var obj=new Drag(oDiv);//普通实现一个拖拽的操作；
+    //
+    obj.on('selfDown',function(){
+        console.log(123)
+    })
+    obj.on('selfDown',function(){
+        console.log(456)
+    })
+
+
+
+</script>
+</body>
+</html>

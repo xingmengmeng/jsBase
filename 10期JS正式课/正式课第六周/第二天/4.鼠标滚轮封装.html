@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body style="height: 2000px;">
+<div id="div"></div>
+<script src="js/wheel.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    addWheel(oDiv,function(bOk){
+        //bOk:鼠标滚轮的方向-》down:true; up:false;
+        if(bOk){
+            this.style.height=this.offsetHeight+10+'px';
+        }else{
+            this.style.height=this.offsetHeight-10+'px';
+        }
+    })
+    /*function addWheel(obj,fn){
+        function wheel(e){
+            e=e||window.event;
+            var bOk=null;
+            //检测鼠标滚轮的方向；当滚轮往下滑：正数-true； 上滑：负数-false；
+            /!*IE和chrome:e.wheelDelta -》down:-120  up:120;
+            火狐：e.detail->down:3  up:-3;*!/
+            if(e.wheelDelta){//IE和chrome
+                bOk= e.wheelDelta<0?true:false;
+            }else{//火狐
+                bOk= e.detail>0?true:false;
+            }
+            fn && fn.call(obj,bOk);
+            //阻止滚轮默认事件；
+            e.preventDefault?e.preventDefault(): e.returnValue=false;
+        }
+        if(window.navigator.userAgent.toLowerCase().indexOf('firefox')!=-1){//火狐浏览器
+            obj.addEventListener('DOMMouseScroll',wheel,false)
+        }else{
+            obj.onmousewheel=wheel;
+        }
+    }*/
+    //onmousewheel:兼容IE 和 chrome；
+    //DOMMouseScroll：兼容火狐
+    /*oDiv.onmousewheel=function(){
+        console.log(1)
+    }*/
+    //Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0
+    /*oDiv.addEventListener('DOMMouseScroll',function(){
+        console.log(window.navigator.userAgent)
+    })*/
+</script>
+</body>
+</html>

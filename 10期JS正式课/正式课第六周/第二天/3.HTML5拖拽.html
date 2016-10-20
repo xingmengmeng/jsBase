@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" draggable="true"></div>
+<script>
+    /*HTML5拖拽--移动端可以
+    -设置： draggable=“true”
+    - 三个事件：ondragstart,ondrag,ondragend*/
+    var oDiv=document.getElementById('div1');
+    oDiv.ondragstart=function(e){
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        this.mx= e.clientX;
+        this.my= e.clientY;
+    };
+    oDiv.ondrag=oDiv.ondragend=function(e){
+        this.style.left= e.clientX-this.mx+this.x+'px';
+        this.style.top= e.clientY-this.my+this.y+'px';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top:0;
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+        }
+        .div1{
+            left:0;
+            background: lightblue;
+        }
+        .div2{
+            left:200px;
+            background: lightpink;
+        }
+        .div3{
+            left:400px;
+            background: lightgreen;
+        }
+        .div4{
+            left:600px;
+            background: darkolivegreen;
+        }
+    </style>
+</head>
+<body>
+<div class="div1"><img src="img/1.png" alt=""></div>
+<div class="div2"><img src="img/2.png" alt=""></div>
+<div class="div3"><img src="img/3.png" alt=""></div>
+<div class="div4"><img src="img/4.png" alt=""></div>
+<script src="js/event.js"></script>
+<script src="js/dragMix.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    for(var i=0; i<aDiv.length; i++){
+        var oDiv=aDiv[i];
+        on(oDiv,'mousedown',down);
+    }
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+

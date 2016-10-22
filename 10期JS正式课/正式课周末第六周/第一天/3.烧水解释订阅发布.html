@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.把所有方法都存到元素的数组中去：--订阅阶段
+    function on(ele,type,fn){
+        if(!ele[type]){
+            ele[type]=[];
+        }
+        var a=ele[type];
+        a.push(fn);
+    }
+    //执行：把该行为boiled下，所有的方法都顺序调用：
+    function fire(ele,type){
+        //1.拿数组
+        var a=ele[type];
+        //2.循环调用
+        for(var i=0; i< a.length; i++){
+            a[i]();
+        }
+    }
+    //等水烧开了以后，想干：1）冲咖啡 2）泡面 3）洗脸
+    var obj={};
+    //................
+    //1.存：把所有跟该行为boiled有关的方法，都存到元素的自定义属性的数组中去；[coffee,noodle,wash]
+    //2.调用：等水开了以后，把数组中的所有方法都顺序调用：
+    on(obj,'boiled',coffee);
+    on(obj,'boiled',noodle);
+    on(obj,'boiled',wash);
+    boiling();
+    function boiling(){
+        setTimeout(function(){
+            console.log('水烧开了');
+            fire(obj,'boiled');
+        },1000)
+    }
+    function coffee(){
+        console.log('冲咖啡')
+    }
+    function noodle(){
+        console.log('可以泡面了')
+    }
+    function wash(){
+        console.log('可以洗脸了')
+    }
+</script>
+</body>
+</html>

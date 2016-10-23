@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body style="height: 2000px">
+<div id="div"></div>
+<script src="js/wheel.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    addWheel(oDiv,function(bOk){
+        if(bOk){
+            this.style.height=oDiv.offsetHeight+10+'px';
+        }else{
+            this.style.height=oDiv.offsetHeight-10+'px';
+        }
+    })
+    /*function addWheel(ele,fn){
+        //2.鼠标滚轮方向的判断：向下true，向上false； 3.回调函数：根据鼠标滚轮方向可以做不同的事情；
+        function wheel(e){
+            e=e||window.event;
+            var bOk=null;
+            //console.log(e.wheelDelta)//IE和chrome：down -120,up 120
+            //alert(e.detail)//firefox:down 3，up -3;
+            if(e.wheelDelta){//IE和chrome
+                bOk= e.wheelDelta<0?true:false;
+            }else{//firefox
+                bOk= e.detail>0?true:false;
+            }
+            e.preventDefault? e.preventDefault(): e.returnValue=false;
+            fn&&fn.call(ele,bOk);
+        }
+        //1.针对鼠标滚轮事件的兼容处理；
+        if(window.navigator.userAgent.toLowerCase().indexOf('firefox')!==-1){
+            oDiv.addEventListener('DOMMouseScroll',wheel,false);
+        }else{
+            oDiv.onmousewheel=wheel;
+        }
+    }*/
+    //onmousewheel:IE和chrome
+    /*oDiv.onmousewheel=function(){
+        console.log(1);
+    };*/
+    //DOMMouseScroll:只针对火狐，并且，必须DOM2级事件来绑定
+    /*oDiv.addEventListener('DOMMouseScroll',function(){
+        console.log(1);
+    })*/
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

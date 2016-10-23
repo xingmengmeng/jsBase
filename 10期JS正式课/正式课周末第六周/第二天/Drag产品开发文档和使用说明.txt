@@ -1,0 +1,37 @@
+Drag产品的开发文档和使用说明书
+1.Drag产品基本用法：
+    如果想实现一个ID为div1的拖拽，你需要操作以下两步：
+    1)获取元素 var oDiv=document.getElementById('div1')
+    2)创建实例 var obj=new Drag(oDiv);
+2.Drag产品的基本构成:
+    Drag产品主要由3部分构成：
+    1)Drag.prototype.down   当鼠标按下的时候开始拖拽
+    2)Drag.prototype.move   当鼠标移动的时候进行拖拽
+    3)Drag.prototype.up     当鼠标抬起的时候停止拖拽
+    Drag产品有4个私有属性：
+        this.x,this.y,this.mx,this.my
+    另外，Drag有一个非常重要的属性，他决定让哪个元素可以有拖拽功能:this.ele;
+3.Drag产品扩展新功能：--客户端利用接口进行产品升级
+    您可以使用obj.on('selfDown',fn1); 给down这个系统行为下，添加一系列方法；
+    您可以使用obj.on('selfMove',fn1); 给move这个系统行为下，添加一系列方法；
+    您可以使用obj.on('selfUp',fn1); 给up这个系统行为下，添加一系列方法；
+。。。。。。。。。。。。。。。。。。。。。
+开发人员，根据自己暴露的接口，进行版本升级；
+1)Drag产品1.1版本升级：
+    添加可以进行边界限制的功能：
+    客户的使用方法:obj.range({left:100,top:0,right:500,bottom:400})
+2)Drag产品1.2版本升级：
+    添加当鼠标按下的时候，可以拖出一个虚线框，虚线框中没有内容，当鼠标抬起的时候，虚线框消失，以前的内容恢复；
+    客户的使用方法:obj.border();
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var xhr = new XMLHttpRequest;
+    xhr.open('head', 'note.txt');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 2) {
+            //->获取响应头
+            //xhr.getResponseHeader([key])
+            var serverTime = xhr.getResponseHeader('Date');
+            //console.log(serverTime);//->格林尼治时间
+            console.log(new Date(serverTime));//->北京时间了
+        }
+
+        if (xhr.readyState === 4) {
+            //->获取响应主体内容
+            //xhr.responseText
+            //xhr.responseXML
+            //console.log(xhr.responseText);
+        }
+    };
+    xhr.send(null);
+</script>
+</body>
+</html>

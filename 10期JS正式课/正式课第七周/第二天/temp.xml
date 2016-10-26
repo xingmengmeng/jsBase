@@ -1,0 +1,10 @@
+<root>
+    <student>
+        <name>高占新</name>
+        <age>81</age>
+    </student>
+    <student>
+        <name>赵文斌</name>
+        <age>82</age>
+    </student>
+</root>

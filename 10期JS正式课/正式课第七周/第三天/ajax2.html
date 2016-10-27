@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+    ajax({
+        url: 'data.json',
+        cache: false,
+        success: function (result) {
+            console.log(result);
+        }
+    });
+
+    ajax({
+        url: 'data2.json',
+        dataType: 'json',
+        async: false,
+        success: function (result) {
+            console.log(result);
+        }
+    });
+</script>
+</body>
+</html>

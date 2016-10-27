@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<script type="text/javascript">
+    var xhr = new XMLHttpRequest;
+    xhr.open('get', 'data.json?_=' + Math.random(), true);
+    xhr.onreadystatechange = function () {
+        if (!/^2\d{2}$/.test(xhr.status)) return;
+        var state = xhr.readyState;
+        if (state === 2) {
+            //->我们获取的是格林尼治时间,还需要把它转换成北京时间
+            var serverTime = xhr.getResponseHeader('Date');
+            serverTime = new Date(serverTime);
+            console.log(serverTime);
+        }
+
+        if (state === 4) {
+            //->我们获取的结果是一个JSON格式的字符串
+            //->我们把它转换成JSON格式的对象
+            var text = xhr.responseText;
+            var data = "JSON" in window ? JSON.parse(text) : eval('(' + text + ')');
+            console.log(data);
+        }
+    };
+    xhr.send(null);
+
+
+    var xhr2 = new XMLHttpRequest;
+    xhr2.open('get', 'data2.json');
+    xhr2.onreadystatechange = function () {
+        if (!/^2\d{2}$/.test(xhr2.status)) return;
+        if (xhr2.readyState === 4) {
+            console.log(xhr2.responseText);
+        }
+    };
+    xhr2.send(null);
+
+
+</script>
+</body>
+</html>

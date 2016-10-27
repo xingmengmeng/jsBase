@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //->JS中的异步编程：定时器、事件绑定、回调函数、AJAX
+    //    var n = 0;
+    //    var timer = window.setTimeout(function () {
+    //        n++;
+    //        console.log(n);//->2) 1
+    //    }, 1000);
+    //    console.log(n);//->1) 0
+
+
+    //    var n = 0;
+    //    var timer = window.setTimeout(function () {
+    //        n++;
+    //        console.log(n);//->2) 1
+    //    }, 0);//->定时器中设置为零并不是立即执行,每个浏览器都会有一个最小的等待时间,谷歌5~6ms IE10~13ms
+    //    console.log(n);//->1) 0
+
+
+    //->定时器中设置的等待时间,不一定到时间就会执行,而是需要等待主任务队列的事情都做完了,才会到等待任务队列中看定时器是否到时间
+    //    var n = 0;
+    //    var timer = window.setTimeout(function () {
+    //        n++;
+    //        console.log(n);
+    //    }, 5);
+    //    var time = new Date();
+    //    for (var i = 0; i < 99999999; i++) {
+    //
+    //    }
+    //    console.log(new Date() - time);
+
+
+    //    window.setTimeout(function () {
+    //        console.log(6);
+    //    }, 6);
+    //    window.setTimeout(function () {
+    //        console.log(3);
+    //    }, 3);
+    //    window.setTimeout(function () {
+    //        console.log(1);
+    //    }, 1);
+    //    window.setTimeout(function () {
+    //        console.log(5);
+    //    }, 5);
+    //    for (var i = 0; i < 99999999; i++) {
+    //
+    //    }
+
+
+    //    window.setTimeout(function () {
+    //        console.log(100);
+    //    }, 100);
+    //    window.setTimeout(function () {
+    //        console.log(1000);
+    //    }, 1000);
+    //
+    //    var time = new Date();
+    //    for (var i = 0; i < 99999999; i++) {
+    //
+    //    }
+    //    console.log('主任务队列总时间:' + (new Date() - time));
+    //
+    //    window.setTimeout(function () {
+    //        console.log(120);
+    //    }, 120);
+    //    window.setTimeout(function () {
+    //        console.log(80);
+    //    }, 80);
+    //
+    //    time = new Date();
+    //    for (i = 0; i < 99999999; i++) {
+    //
+    //    }
+    //    console.log('主任务队列总时间:' + (new Date() - time));
+
+    //    var time = new Date();
+    //    window.setTimeout(function () {
+    //        console.log('到定时器中的时间:' + (new Date() - time));
+    //    }, 1000);
+    //    for (var i = 0; i < 99999999; i++) {
+    //
+    //    }
+    //    console.log('主任务队列总时间:' + (new Date() - time));
+
+    /*document.body.onclick = function () {
+     console.log('no');
+     };
+     console.log('ok');*/
+
+
+    //->AJAX这个任务
+    //开始:xhr.send() 说明这个任务开始了
+    //结束:xhr.readyState===4 说明这个任务结束了
+
+    //    var xhr = new XMLHttpRequest;
+    //    xhr.open('get', 'data.json', true);
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState);//->2 3 4
+    //    };
+    //    xhr.send(null);
+
+    //    var xhr = new XMLHttpRequest;
+    //    xhr.open('get', 'data.json', true);
+    //    xhr.send(null);
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState);//->2 3 4
+    //    };
+
+    //    var xhr = new XMLHttpRequest;
+    //    xhr.open('get', 'data.json', false);
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState);//->4
+    //    };
+    //    xhr.send(null);
+
+    var xhr = new XMLHttpRequest;
+    xhr.open('get', 'data.json', false);
+    xhr.send(null);
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);//->
+    };
+</script>
+</body>
+</html>

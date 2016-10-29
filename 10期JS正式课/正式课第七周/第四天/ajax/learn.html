@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        // STEP 1 获取ajax对象
+        var xhr = new XMLHttpRequest();
+
+        // STEP 2
+        // 准备http请求数据
+        /**
+         * param1 http方法  不区分大小写，只支持get post head delete put options
+         * param2 请求地址 可以传相对路径也可以穿绝对路径
+         * 假设我要获取README.txt 相对路径为./README.txt 绝对路径 /10_ajax/ajax/README.txt
+         * param3 是否为异步请求，默认为true
+         * param4 用户名 URL中的username 默认为undefined
+         * param5 密码 URL中密码 默认为undefined
+         */
+        xhr.open('http methods', 'request URI', 'isAsync', 'username', 'password');
+
+        // step 3 获取服务器响应
+        // 执行时机 当xhr的readyState属性改变的时候就会自动执行此事件
+        xhr.onreadystatechange = function () {
+            // 有兼容性，低版本浏览器不可用
+//            if (xhr.readyState === xhr.DONE) {
+//
+//            }
+            // 判断http事务是否完成
+            if (xhr.readyState === 4) {
+                // 判断服务器的响应状态码
+                if (/^2\d{2}$/.test(xhr.status) || xhr.status === 304) {
+                    // 获取响应主体,将响应主体格式化字符串格式返回
+                    var response = xhr.responseText;
+
+                    // 将响应主体格式化为xml文档
+                    var responseXML = xhr.responseXML;
+
+                    // 不做任何转换直接返回
+                    // ie10一下不可用
+                    var responseBody = xhr.response;
+
+                } else {
+
+                }
+            }
+        };
+
+        // xhr.readyState
+        // 标识当前ajax对象执行的状态
+        // 该属性一共有5个值
+        /**
+         * 0 xhr对象刚刚实例化完成，还未执行任何操作。默认值 UNSENT
+         * 1 xhr执行完open方法之后。该属性自动变为1 OPENED
+         * 2 xhr开始接收响应头，该属性自动变为2 HEADERS_RECEIVED
+         * 3 xhr开始接收响应主体，该属性自动变为3 LOADING
+         * 4 http事务完成，该属性自动变为4 DONE
+         */
+
+
+        // STEP 4  发送http请求
+        /**
+         * 1、该方法会把参数放到请求主体中
+         * 2、参数可以使用string null undefined bolb arraybuffer FormData
+         * string：DOMString string JSONString querystring
+         * bolb：不透明的二进制块，文件上传
+         * arraybuffer：可读写的二进制流
+         * FormData: html5提供的封装表单数据的对象
+         */
+        xhr.send();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

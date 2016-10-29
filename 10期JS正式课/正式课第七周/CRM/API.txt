@@ -37,7 +37,7 @@
 
 3、获取指定客户的信息
    URL:/getInfo GET
-   参数:?id=1 传递给服务器对应的客户的ID
+   参数:?id=1 传递给服务器对应的客户的ID   /getInfo?id=12
    返回:
    '{
       code:0,

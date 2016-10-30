@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        window.name = 'global';
+        $.ajax({
+            url: './ajax.html',
+            async: true,
+            beforeSend: function () {
+                console.log('[beforeSend]');
+                console.log('[beforeSend this name]', this.name);
+            },
+            cache: false,
+            complete: function () {
+                console.log('[complete]');
+                console.log('[complete this name]', this.name);
+            },
+            contentType: false,
+            context: {name: 'local'},
+            data: new FormData(),
+            dataType: 'html',
+            error: function (err) {
+                console.log('[error]', err);
+            },
+            headers: {abcd: 123},
+            method: 'post',
+            processData: false,
+            success: function (data) {
+                console.log('[success data]', data);
+            },
+            timeout: 0
+
+        });
+
+
+//        // deferred promise
+//        $.get('./ajax1.html').done(function (data) {
+//            console.log('done:', data)
+//        }).fail(function (ex) {
+//            console.log('fail:', ex)
+//        }).always(function () {
+//            console.log('always')
+//        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

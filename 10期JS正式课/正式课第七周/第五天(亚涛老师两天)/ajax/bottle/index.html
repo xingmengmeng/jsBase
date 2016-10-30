@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="ajax.js"></script>
+    <script>
+        ajax({
+            url: './ajax.js',
+            method: 'post',
+            headers: {
+                'abcd': '123',
+                'Content-type': 'application/x-www-form-urlencoded'
+            },
+            async: true,
+            data: {a: 1, b: 2},// a=1&b=2
+            success: function (data) {
+                console.log(data)
+            },
+            error: function (ex) {
+                console.error(ex);
+            },
+            cache: false,
+            dataType: 'text'
+        })
+
+    </script>
+    <!--<script>-->
+    <!--document.write(location.href);-->
+    <!--</script>-->
+</head>
+<body>
+</body>
+</html>

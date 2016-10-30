@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        jQuery.ajax({
+            // 是否为异步请求.默认为true
+            async: true,
+            // 在xhr对象的send方法执行之前，调用此函数
+            // 实现loading效果
+            beforeSend: function () {
+
+            },
+            // 是否缓存该请求。默认为true。
+            // 当dataType为script jsonp时 cache默认为false
+            cache: true,
+            // 不管ajax成功还是失败，都会执行此方法。
+            // 关闭loading效果或者不管成功还是失败都需要执行的逻辑也可以放到此函数中
+            complete: function () {
+                console.log(this.name); // ==> local
+            },
+            // 设置请求的MIME Type
+            // 默认值为表单提交
+            // 当contentType设置为false时，会根据往服务器发送的参数的类型自动生成Content-type
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+            // success、error、beforesend、complete这4个函数的this指向
+            context: {name: 'local'},
+            // 往服务器发送的数据
+            // 可以传string 对象 数组 FormData
+            // 当data为FormData是 content-type一定要设置为false。processData也需要设置为false
+            // 如果不把contentType设置为false，那么服务器将收不到任何数据
+            data: {},
+            // 格式化服务器返回的数据
+            /**
+             * text 把响应主体格式化为字符串并返回
+             * json 把响应主体格式化为json对象
+             * script 把响应主体格式为script并执行 eval
+             * html 把响应主体格式化为html文档
+             * jsonp 跨域
+             * xml 把响应主体格式化为xml文档
+             */
+            dataType: 'text',
+            // 当ajax执行失败时会触发此函数
+            // 触发时机：ajax请求失败、按照dataType格式化响应主体失败、请求超时
+            error: function () {
+
+            },
+            // 自定义请求首部
+            headers: {},
+            // 请求的http方法。默认为get方法。
+            // 在jquery的1.9.0之前使用type代替。1.9.0之后使用method
+            method: 'get',
+            // 修改响应首部中content-type
+            mimeType: 'text/plain',
+            // 当data为一个对象，是否需要将data格式化为querystring的格式
+            // 当data为FormData，该属性一定要设置为false。如果不设置为false则服务器收不到任何数据。
+            // 默认值为true
+            processData: true,
+            // 当ajax请求成功时 执行此函数
+            success: function (data) {
+                // data为经过dataType格式化之后的响应主体
+            },
+            // 超时毫秒数，默认为0 不执行超时逻辑。
+            // 如果过了指定的毫秒数服务器依然没有返回数据，则强制终止该ajax。执行error函数
+            timeout: 0,
+            // ajax请求的地址
+            url: ''
+        });
+
+
+        /**
+         * 发送最简单的get请求
+         * param1 请求的url地址
+         * param2 发送的参数
+         * param3 仅仅是成功时回调函数
+         * param4 dataType
+         */
+        jQuery.get('url', 'data', function () {
+        }, 'dataType');
+
+        /**
+         * 最简单的post请求
+         * param1 请求的url地址
+         * param2 发送的参数
+         * param3 仅仅是成功时回调函数
+         * param4 dataType
+         */
+        jQuery.post('url', 'data', function () {
+        }, 'dataType');
+
+        /**
+         * 通过get方法请求，并且将响应主体格式化为json对象
+         * param1 请求的url地址
+         * param2 发送的参数
+         * param3 仅仅是成功时回调函数
+         */
+        // 该方法相当于 jQuery.get('url','data',function(){},'json');
+        jQuery.getJSON('url','data',function(){});
+
+        /**
+         * 通过get方法请求，并且将响应主体格式化为js脚本执行
+         */
+        // 该方法相当于 jQuery.get('url',null,function(){},'script');
+        jQuery.getScript('url',function(){
+
+        });
+
+        $.get('url','data',function(){},'dataType')
+    </script>
+</head>
+<body>
+
+</body>
+</html>

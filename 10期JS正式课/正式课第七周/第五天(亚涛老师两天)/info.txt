@@ -1,0 +1,284 @@
+第一天  http  ajax
+第二天  jquery 跨域
+
+张亚涛
+
+1 连接前端和后台
+2 传输数据
+3 需要一个快递员（http协议）
+4 可以根据应用场景选择具体的运输方法
+
+
+URI
+统一资源标识符
+
+URL
+统一资源定位符
+
+URN
+统一资源名称
+
+URI是URL和URN的超集
+
+标识该资源在整个互联网上的唯一位置。
+
+baidu.com?a=1&b=2
+
+http://www.baidu.com/s?wd=123
+
+URL的组成结构
+<scheme>://<username>:<password>@<hostname>:<port>/<path>?<querystring>#<hash>
+http://www.zhufengpeixun.cn/customize/node/index.html
+
+http://www.zhufengpeixun.cn/customize/node/index.html?a=1&b=2&c=3
+
+http://pan.baidu.com/disk/home#list/path=%2F&vmode=list
+scheme:指定该URL的请求协议
+hostname:主机域名
+port:主机端口号（每一台服务器最多使用65535个端口）。http协议默认端口是80.
+path:请求服务器资源的地址
+querystring:请求参数。对该请求进行过滤。格式是固定的key1=value1&key2=value2
+hash:锚点。定位.另外一个作用。利用hash实现单页面应用
+
+192.168.1.1 zhufeng.com
+
+DNS（domain naming service）解析。把域名解析为ip
+
+网络七层协议
+1 物理层 网卡
+2 链路层 网卡驱动
+3 网络层 ip
+4 传输层 TCP (3次握手 4次挥手) UDP
+5 会话层 保持会话 断开会话 操作系统控制的
+6 表示层 加密解密
+7 应用层 http https ftp smtp telnet curl
+
+
+http
+中文名称：超文本传输协议
+作用：负责连接http客户端和服务器并且传输数据。
+重要性：全世界的互联网流量，90%都是通过http传输。
+
+http组成结构：
+1、请求
+2、响应
+
+http它是一个事务。包含两个事件。请求事件和响应事件。
+
+银行转账就是一个事务。"我这里扣钱"，"对方涨钱"。这两件事都成功之后转账才成功。
+事务是一系列事件的集合，只有当这个集合中的所有事件都成功之后，这个事务才算完成，否侧失败。
+
+请求事件：
+请求服务器。告诉服务器我想获取什么资源。
+http请求的内容称之为报文
+
+请求报文分为3部分
+
+第一部分。
+http报文第一行，叫做起始行。
+作用：标识请求的基本信息（使用的http方法、请求的路径、http版本号）
+第二部分
+首部
+作用：标识请求的附属信息。
+cookie
+作用：保存用户信息，还有服务器往浏览器掉的渣
+第三部分
+主体
+作用：数据的承载。
+
+"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2679.0 Safari/537.36"
+"Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
+
+响应事件
+响应的内容称之为响应报文
+响应报文的结构分为3部分
+1 起始行
+响应的基本信息（http版本号、服务器状态码、状态码描述符）
+2 首部
+date
+content-length
+3 主体
+放置服务器响应浏览器的数据。
+
+http版本号
+0.9
+1.0
+1.1
+2.0
+
+1.1和2.0的区别，对前端产生什么有利影响？
+1、多路复用
+2、首部压缩
+3、服务器推送
+4、请求和发送的内容改为数据帧格式
+
+http1.1升级到2.0需要设置Connection: Upgrade请求首部。服务器收到Upgrade的请求，通知浏览器切换协议为http2.0,如果浏览器不支持，则继续使用1.1。
+
+http方法：
+
+get 从服务器获取资源
+post 往服务器发送资源
+delete 告诉服务器删除某个资源
+head 通知服务器，响应报文中只需返回起始行和首部，不需要返回响应主体。
+put 往服务器发送数据，幂等性和post不一样。put有幂等性。
+
+get：
+1、没有请求主体（因为get方法是从服务器资源，不需要往服务器发送资源。所以不需要请求主体。）
+2、发送的参数，必须格式化为querystring，拼接到URL后面
+3、发送的参数有大小限制。（因为get把参数格式化之后拼接到URL后面，而浏览器对URL的长度有大小限制，所以造成get有大小限制）【ie 2k、chrome 8k、firefox 7k】
+4、容易被浏览器缓存
+5、明文发送（不意味着它就是不安全的）
+
+post
+1、有请求主体。
+2、没有大小限制
+3、不会被浏览器缓存
+4、可以选择明文发送或者不是明文发送。
+5、post的参数既可以放到querystring也可以放到请求主体。根据应用场景选择。
+
+delete
+和get特点一模一样
+1、服务器处理成功返回的状态码202（接受该请求）
+
+head
+和get特点一模一样
+1、不会返回响应主体。
+
+put
+和post特点一模一样。
+1、幂等性不同（幂等性是需要服务器来保证的，如果没有保证，则put和post一模一样）。
+
+根据特点可以把它们分为两类：get系（get、delete、head）post系（post、put）
+[ 'ACL',
+  'BIND',
+  'CHECKOUT',
+  'CONNECT',
+  'COPY',
+  'DELETE',
+  'GET',
+  'HEAD',
+  'LINK',
+  'LOCK',
+  'M-SEARCH',
+  'MERGE',
+  'MKACTIVITY',
+  'MKCALENDAR',
+  'MKCOL',
+  'MOVE',
+  'NOTIFY',
+  'OPTIONS',
+  'PATCH',
+  'POST',
+  'PROPFIND',
+  'PROPPATCH',
+  'PURGE',
+  'PUT',
+  'REBIND',
+  'REPORT',
+  'SEARCH',
+  'SUBSCRIBE',
+  'TRACE',
+  'UNBIND',
+  'UNLINK',
+  'UNLOCK',
+  'UNSUBSCRIBE' ]
+
+为什么要设计这么多的http方法？
+应用场景不同，固定的方法做固定的事。
+由此引出一种软件设计架构-> restful（表征状态转移）
+
+/rest/1.0/getUserInfo
+
+增加一个用户
+post /rest/1.0/getUserInfo {name:'zhangsan',age:18}
+删除一个用户
+delete /rest/1.0/getUserInfo?id=1
+修改id为1的用户age为20
+put /rest/1.0/getUserInfo?id=1 {name:'zhangsan',age:20}
+查询所有用户
+get /rest/1.0/getUserInfo
+查询id为1的用户
+get /rest/1.0/getUserInfo?id=1
+
+浏览器缓存：（强缓存）
+浏览器根据响应首部（expire、cache-control）来进行缓存。
+
+expire：单位为GMT时间。标识返回的这个静态资源在指定时间到来之前一直使用缓存。不再去服务器请求。
+cache-control:单位时间为秒，指定秒数内，不会再去服务器请求，一直使用缓存。
+
+http状态码
+1xx http正在初始化
+101 正在切换协议  目前只有一个地方在用（websocket）
+
+2xx http客户端请求成功
+200 成功
+202 接受 delete和put返回202
+
+3xx 重定向和缓存
+301 永久转移
+302 临时转移
+（301和302的特点一摸一样：没有响应主体）
+作用：服务器控制站点或页面之间的跳转。
+dome1：见360buy.com的访问  Location:http://www.jd.com/
+dome2: 见登录成功跳转到首页
+
+区别：搜索引擎的权重不同。使用301会降低搜索引擎权重。
+
+304 未改动（not modified）
+涉及到两个响应首部
+last-modified 标识该资源在服务器最后一次修改的时间 GMT格式
+etag 标识该资源最后一次修改后的摘要
+涉及到两个请求首部
+if-modified-sice 将上次请求返回的last-modified值发送给服务器
+if-none-match 讲上次请求返回的etag值发送给服务器
+
+
+4xx http客户端请求失败
+400 错误的请求。url方案错误、端口错误、参数不正确、缺少参数、url长度超过服务器限制。
+401 未认证，没有登录
+403 没有访问权限
+404 未找到该资源
+
+5xx http服务器错误
+前端不需要关心
+
+MIME Type
+多用途因特网邮件扩展
+作用：标识请求或相应的数据格式
+在http中是通过通用首部content-type表示的。
+
+html text/html
+css text/css
+js text/javascript application/javascript
+png image/png
+gif image/fig
+jpg image/jpeg
+jpeg image/jpeg
+json application/json
+表单提交 application/x-www-form-urlencoded
+
+大类型/小类型
+如果请求或响应的数据内容为字符串。则可以指定编码格式。
+
+text/html; charset=utf-8
+image/png;
+
+https和http的区别
+https = http + ssl/tsl(都是加密用的)
+
+ssl、tsl是c的标准库
+
+https如何加密？
+对称加密/非对称加密  RSA算法
+
+浏览器对相同URL的http请求有并发个数限制。
+http://www.a.com/a
+http://www.ab.com/a
+
+首部的类型
+1、请求首部
+cookie
+2、响应首部
+3、通用首部
+4、实体首部（响应首部的子集）
+5、扩展首部(自己自定义的首部)

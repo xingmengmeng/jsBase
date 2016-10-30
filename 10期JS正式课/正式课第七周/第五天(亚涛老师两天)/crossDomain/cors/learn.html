@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function getCORS() {
+            if (window.XMLHttpRequest && (new XMLHttpRequest()).withCredentials !== void 0) {
+                return new XMLHttpRequest();
+            } else if (window.XDomainRequest) {
+                return new XDomainRequest();
+            }
+            throw new ReferenceError('当前浏览器不支持跨域资源共享');
+        }
+
+        // STEP 1 获取cors对象
+        var cors = getCORS();
+
+        cors.withCredentials = true;
+        cors.open('get', 'http://localhost:8080/cors');
+        //        cors.open('http method', 'request URI', 'isAsync');
+
+        // 使用onload事件来获取响应主体
+        // 触发时机：http事务完成，等同ajax中readyState为4的时候
+        cors.onload = function () {
+            console.log(cors.responseText);
+//            if (cors.status === 200) {
+//                // 打印响应主体
+//                console.log(cors.responseText)
+//            }
+        };
+
+        cors.send();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

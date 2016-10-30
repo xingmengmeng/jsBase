@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            console.log('ready')
+        });
+
+        $(window).load(function () {
+            console.log('load')
+        });
+
+        var ready = (function () {
+            function pageReady() {
+                return document.readyState === 'complete';
+            }
+
+            if (window.addEventListener) {
+                return function (callback) {
+                    if (pageReady()) {
+                        callback();
+                        return;
+                    }
+                    window.addEventListener('DOMContentLoaded', function () {
+                        callback();
+                    }, false);
+                }
+            }
+            return function (callback) {
+                if (pageReady()) {
+                    callback();
+                    return;
+                }
+                document.onreadystatechange = function () {
+                    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                        document.onreadystatechange = null;
+                        callback();
+                    }
+                };
+                // document.readyState
+                // 页面当前加载的状态
+                /**
+                 * loading 正在加载html
+                 * interactive DOM已经加载完成，其他资源还未加载
+                 * complete 资源全部加载完成
+                 */
+            }
+        })();
+
+        ready(function () {
+            console.log('my ready');
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+    <script src="ajax.js"></script>
+</head>
+<body>
+<textarea id="inputContent"></textarea><br/>
+<button id="throwBottle">扔一个</button>
+<button id="getBottle">捞捞看</button>
+</body>
+</html>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    var inputContent = $('inputContent');
+    var throwBottle = $('throwBottle');
+    var getBottle = $('getBottle');
+
+    throwBottle.onclick = function () {
+        var content = inputContent.value;
+        if (!content) {
+            return;
+        }
+        ajax({
+            url: '/throwBottle',
+            method: 'post',
+            async: true,
+            dataType: 'text',
+            data: JSON.stringify({content: content}),
+            success: function (data) {
+                alert('您的瓶子已经飘向远方');
+                inputContent.value = '';
+            },
+            error: function (ex) {
+                console.error(ex);
+            }
+        })
+    };
+    getBottle.onclick = function () {
+        ajax({
+            url: '/getBottle',
+            method: 'get',
+            async: true,
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                alert('恭喜您捞到一个瓶子\n内容是：\n' + data.content);
+            },
+            error: function (ex) {
+                console.error(ex)
+            }
+        })
+    }
+</script>

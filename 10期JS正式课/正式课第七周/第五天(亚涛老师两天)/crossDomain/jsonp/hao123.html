@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropbox {
+            display: none;
+            position: absolute;
+            left: 71px;
+            width: 167px;
+            border: 1px solid beige;
+        }
+
+        .dropbox ul {
+            list-style: none;
+        }
+
+        .dropbox ul li {
+            background: seashell;
+            cursor: pointer;
+
+        }
+
+        .dropbox ul li:nth-child(odd) {
+            background: seagreen;
+        }
+    </style>
+    <script src="jsonp.js"></script>
+</head>
+<body>
+<label>百度搜索 <input type="search" id="seachBox"></label>
+<input type="button" value="百度一下" id="seachBtn">
+
+<div class="dropbox">
+    <ul id="showBox">
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    var searchInput = $('seachBox');
+    var searchBtn = $('seachBtn');
+    var showBox = $('showBox');
+    var dropBox = document.getElementsByClassName('dropbox')[0];
+    // 百度josnp接口地址
+    var searchURL = 'http://suggestion.baidu.com/su';
+    // 百度jsonp接口jsonpcallback
+    var jsonpcallback = 'cb';
+
+    searchBtn.onclick = function () {
+        // 获取搜索内容
+        var input = searchInput.value;
+        if (!input) {
+            return;
+        }
+        // wd=word
+        jsonp(searchURL, {wd: input}, jsonpcallback, function (data) {
+//            {q:"zhufeng",p:false,s:["朱峰社区","珠峰js培训","珠峰大本营旅游攻略","珠峰电动车","珠峰培训","逐风者的祝福之剑","珠峰","珠峰大本营","逐风者的祝福之剑任务","朱峰"]};
+            var list = data.s;
+            showBox.innerHTML = '';
+            dropBox.style.display = 'block';
+            var fragment = document.createDocumentFragment();
+            for (var i = 0, len = list.length; i < len; i++) {
+                var li = document.createElement('li');
+                li.innerHTML = list[i];
+                fragment.appendChild(li);
+            }
+            showBox.appendChild(fragment);
+            fragment = null;
+        });
+    };
+
+    // 给ul绑定click事件，利用事件冒泡去百度搜索
+    var baiduURL = 'https://www.baidu.com/s?wd=';
+    showBox.onclick = function (e) {
+        e || (e = window.event);
+        var target = e.target || e.srcElement;
+        var key = target.innerHTML;
+        // 打开一个新页面
+        window.open(baiduURL + encodeURIComponent(key), '_blank');
+    }
+
+</script>

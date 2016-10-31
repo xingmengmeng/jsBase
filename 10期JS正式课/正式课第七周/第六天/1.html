@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+    /*
+     * 项目资源文件(HTML/CSS/JS...)在本机电脑的63342这个端口下
+     * 请求的数据在人家腾讯的服务器上,由腾讯服务器的80端口处理
+     * ERROR:XMLHttpRequest cannot load http://matchweb.sports.qq.com/kbs/hotMatchList. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:63342' is therefore not allowed access.
+     */
+    ajax({
+        url: 'http://matchweb.sports.qq.com/kbs/hotMatchList',
+        type: 'get',
+        dataType: 'json',
+        success: function (result) {
+            console.log(result);
+        }
+    });
+
+</script>
+</body>
+</html>

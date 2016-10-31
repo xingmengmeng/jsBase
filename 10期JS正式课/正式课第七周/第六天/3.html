@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--<script type="text/javascript">
+    function aa(result) {
+        console.log(result);
+    }
+</script>
+<script type="text/javascript" src="http://localhost:80/getAll?callback=aa"></script>-->
+
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+    //->jQuery中的AJAX
+    //XMLHttpRequest cannot load http://localhost/getAll. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:63342' is therefore not allowed access.
+    //    $.ajax({
+    //        url: 'http://localhost:80/getAll',
+    //        type: 'get',
+    //        dataType: 'json',
+    //        success: function (result) {
+    //            console.log(result);
+    //        }
+    //    });
+
+    //->jQuery中的JSONP
+    //    $.ajax({
+    //        url: 'http://localhost:80/getAll',
+    //        type: 'get',
+    //        dataType: 'jsonp',
+    //        success: function (result) {
+    //            console.log(result);
+    //        }
+    //    });
+    //->Request URL:http://localhost/getAll?callback=jQuery1113010784909163025613_1477887484452&_=1477887484453 使用JQ中的JSONP我们不需要自己加回调函数传递给服务器,JQ默认会帮我们创建一个随机的函数名,传递给服务器,服务器会把随机函数名和所需要的数据按照=>函数名(数据) 的方式返回给客户端,客户端接收到之后就会把随机函数执行(随机函数可以理解为就是我们在success中传递的回调函数)
+
+    //->指定自己的函数名传递给服务器:jsonpCallback
+    //    function fn(result) {
+    //        console.log(result);
+    //    }
+    //    $.ajax({
+    //        url: 'http://localhost:80/getAll',
+    //        type: 'get',
+    //        dataType: 'jsonp',
+    //        jsonpCallback: 'fn'
+    //    });
+
+
+    function fn(result) {
+        console.log(result);
+    }
+    $.ajax({
+        url: 'http://localhost:80/getAll',
+        type: 'get',
+        dataType: 'jsonp',
+        jsonpCallback: 'fn',
+        jsonp: 'cb' //->把默认的callback改为cb,这样传递给服务器的是?cb=fn
+    });
+
+</script>
+<!--回家后自己查询其它的跨域方式-->
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        input {
+            outline: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .box {
+            margin: 20px auto;
+            width: 400px;
+        }
+
+        .box input {
+            padding: 0 4px;
+            width: 390px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #DDD;
+        }
+
+        .box .searchItem {
+            display: none;
+            border: 1px solid #DDD;
+            border-top: none;
+        }
+
+        .box .searchItem li {
+            padding: 0 4px;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .box .searchItem li:hover {
+            background: #74C274;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <input type="text" id="searchInp"/>
+    <ul class="searchItem">
+        <!-- <li>珠峰培训</li>
+         <li>珠峰培训怎么样?</li>
+         <li>珠峰培训学费多少?</li>
+         <li>珠峰培训NODEJS培训</li>-->
+    </ul>
+</div>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+    /*
+     * 不管是在文本框中输入内容,还是文本框获取焦点的时候,我们都需要把文本框中的内容传递给百度的服务器,然后获取到我们需要的搜索内容,把获取的搜索内容展示在页面中,让SEARCH ITEM区域显示即可(JSONP)
+     * 使用事件委托处理点击的操作:如果是文本框什么都不做;如果是$searchItem下的LI,点击的时候,把LI内容放到文本框中,同时收起提示区域;除此之外,都是让提示区域消失的;
+     */
+    var searchRender = (function () {
+        var $box = $('#box'),
+                $searchInp = $('#searchInp'),
+                $searchItem = $box.children('.searchItem');
+
+        //->文本框事件的处理
+        function bindInpEvent() {
+            var text = $(this).val();
+
+            //->如果文本框中没有内容,我们隐藏提示区域即可
+            if (text.length === 0) {
+                $searchItem.stop().slideUp(100);
+                return;
+            }
+
+            //->如果文本框中有内容,我们通过JSONP把内容发送给百度,获取百度返回的结果,把结果展示在提示区域,让提示区域展开
+            $.ajax({
+                url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + text,
+                type: 'get',
+                dataType: 'jsonp',
+                jsonp: 'cb',
+                success: function (result) {
+                    if (result) {
+                        result = result['s'];
+                        if (result.length === 0) {
+                            //->没有匹配的数据
+                            $searchItem.stop().slideUp(100);
+                            return;
+                        }
+                        //->有匹配的数据,绑定数据,并且展开提示层
+                        var str = '';
+                        $.each(result, function (index, item) {
+                            if (index > 3) {
+                                return false;
+                            }
+                            str += '<li>' + item + '</li>';
+                        });
+                        $searchItem.html(str).stop().slideDown(100);
+                    }
+                }
+            });
+        }
+
+        //->点击事件的处理
+        function bindClickEvent(e) {
+            var tar = e.target,
+                    tarTag = tar.tagName.toUpperCase(),
+                    tarInn = tar.innerHTML;
+            var $tar = $(tar);
+
+            //->INPUT
+            if (tarTag === 'INPUT' && tar.id === 'searchInp') {
+                return;
+            }
+
+            //->LI
+            if (tarTag === 'LI' && $tar.parent().hasClass('searchItem')) {
+                $searchInp.val(tarInn);
+                $searchItem.stop().slideUp(100);
+                return;
+            }
+
+            //->OTHERS
+            $searchItem.stop().slideUp(100);
+        }
+
+        return {
+            init: function () {
+                $searchInp.on('keyup focus', bindInpEvent);
+                $(document).on('click', bindClickEvent);
+            }
+        }
+    })();
+    searchRender.init();
+</script>
+</body>
+</html>

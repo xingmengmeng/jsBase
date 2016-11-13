@@ -56,40 +56,47 @@
     </section>
 
     <!--MATCH-->
-    <section class="match">
-        <div class="top">
-            <div class="left">
-                <img src="http://mat1.gtimg.com/sports/nba/logo/1602/9.png" alt=""/>
-                <span>90</span>
+    <section class="match" id="match">
+        <script type="text/template" id="matchTemplate">
+            <div class="top">
+                <div class="left">
+                    <img src="<%=matchInfo.leftBadge%>" alt=""/>
+                    <span><%=matchInfo.leftGoal%></span>
+                </div>
+                <div class="center"><%=matchInfo.startTime.formatTime('{1}月{2}日 {3}:{4}')%></div>
+                <div class="right">
+                    <span><%=matchInfo.rightGoal%></span>
+                    <img src="<%=matchInfo.rightBadge%>" alt=""/>
+                </div>
             </div>
-            <div class="center">06月09日 09:00</div>
-            <div class="right">
-                <span>120</span>
-                <img src="http://mat1.gtimg.com/sports/nba/logo/1602/9.png" alt=""/>
+            <%var leftSupport=parseFloat(matchInfo.leftSupport);%>
+            <%var rightSupport=parseFloat(matchInfo.rightSupport);%>
+            <%var n=(leftSupport/(leftSupport+rightSupport))*100; n='width:'+n+'%';%>
+            <div class="middle">
+                <div class="progress" id="progress" style="<%=n%>"></div>
             </div>
-        </div>
-        <div class="middle">
-            <div class="progress"></div>
-        </div>
-        <div class="bottom">
-            <div class="left">3637978</div>
-            <div class="center">NBA季后赛</div>
-            <div class="right">4414263</div>
-        </div>
+            <div class="bottom">
+                <div class="left support" id="supportLeft" type="1"><%=leftSupport%></div>
+                <div class="center"><%=matchInfo.matchDesc%></div>
+                <div class="right support" id="supportRight" type="2"><%=rightSupport%></div>
+            </div>
+        </script>
     </section>
 
     <!--PLAYER-->
-    <section class="player">
+    <section class="player" id="player">
         <ul class="wrapper">
-            <li>
-                <a href="#">
+            <script type="text/template" id="playerTemplate">
+                <%$.each(playerList,function(index,item){%>
+                <li><a href="#" class="<%=index==0?'bg':''%>">
                     <div>
-                        <img src="http://vpic.video.qq.com/39729212/z0020jvzcm6_160_90_3.jpg" alt=""/>
-                        <span class="time">02:32</span>
+                        <img src="<%=item.pic%>" alt=""/>
+                        <span class="time"><%=item.duration.formatTime('{1}:{2}')%></span>
                     </div>
-                    <p>美国111-74阿根廷 杜兰特23分考辛斯两双</p>
-                </a>
-            </li>
+                    <p><%=item.title%></p>
+                </a></li>
+                <%});%>
+            </script>
         </ul>
     </section>
 </main>

@@ -3,3 +3,5 @@
 数据接口地址：
 http://matchweb.sports.qq.com/html/matchDetail?mid=100000:1469151
 http://matchweb.sports.qq.com/html/matchStatV37?mid=100000:1469151
+
+http://matchweb.sports.qq.com/kbs/teamSupport?mid=100000:1469151&type=1  左边传1,右边传2

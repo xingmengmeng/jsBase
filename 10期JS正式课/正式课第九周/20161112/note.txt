@@ -1,0 +1,181 @@
+1、B结束之前的一些事情
+  ->周末班学员
+     第五次考试内容:Ajax分页  http://www.zhufengpeixun.cn/course/22(课时157~162) 最低要求:NODE的SERVER部分和造数据不需要自己写,可以直接的使用,客户端分页列表页和点击进去的详情页面需要自己去完成(考试时间一个半小时)
+
+     第六次考试内容:移动端的个人简历 (基本信息、求职信息、自我评价、工作经历、项目经历、专业技能...需要完成五屏及以上)
+
+  ->打算重听的学员，在本周日结束之前，QQ上和我说
+
+
+2、使用gitHub发布自己的项目
+   GitHub就是一个网站：http://github.com/，这个网站是一个源代码管理平台，也可以称之为一个开源的GIT仓库，可以让客户通过GIT操作来管理和发布自己的代码
+
+   GitHub是全世界非常具有权威性和专业性的网站，目前很多公司招聘都需要你提供自己的GitHub账号
+   ->我们所知道的前端的插件、类库、框架等在GitHub上都有源代码托管
+   ->如果我们想研究一款类库或者框架,首先在GitHub上把原代码fork到自己的仓库一份(回去后,自己把常用的框架或者类库的源代码fork到自己的仓库一份)
+   ->我们平时也可以把自己写的一些类库或者组件上传到GitHub中,让别人去使用,来提高自己的粉丝和名气
+   ...
+
+建议大家的职业曲线:
+  打地基(多做一些项目,多敲一些代码,让自己的项目经验,项目解决能力等提高起来:见到项目后就不会再发愁了,自己可以担当一个项目的负责人了)
+
+  提高(自己经常看一些框架的源码,分析和学习别人开发代码的经验,使自己的技术有本质的提升:以后再出现一个框架,不需要再痛苦了,看看API看看源代码就会了,有精力的话自己也给公司等写一些组件和框架)
+
+  分享(把自己总结的经验等以各种方式呈现给别人,这样的话自己在这个圈子中名气会越来越大:以后再这个行业里,提到某个东西想到的就是你)
+
+  =>努力
+
+
+3、gitHub使用
+
+  删除仓库:
+    进入仓库->Settings->(Options)最底部->Delete this repository->再次输入自己的仓库名字来确认删除即可
+
+  新建仓库:
+    New Repository -> 输入:Repository name、Description ->Initialize this repository with a README 在创建仓库的时候是否创建一个README.MD的文件呢? README.MD文件就是当前仓库的一个说明文件,在这里可能会介绍框架或者项目的基本信息以及如何使用等(README.MD文件中的内容需要使用MARKDOWN语法进行编辑  MARKDOWN是专门用来编写技术文档的,自己回去后查一查使用的语法)  ->Create New Repository
+
+  使用GitHub发布项目(这个项目,平台默认想让我们发布的是自己的个人博客)，其实就是在一个仓库的基础上，把我们的项目进行发布，GitHub默认为每一个用户都提供了免费的项目发布平台，我们只需要按照它的操作来完成发布即可:
+
+  ->1)创建一个仓库
+
+  ->2)基于当前的这个仓库发布项目
+      Settings -> (Options) GitHub Pages -> Launch Automatic page generator -> New project site(新项目的设置,这里我们不需要修改任何的东西) -> Continue to layouts -> 选择GitHub中提供的博客页面的模板,我们要上传的是自己的个人简历,模板和我们的都不太一样,我们可以不选模板 -> Publish page
+
+      如何知道发布是否成功呢?
+      ->Your project page has been created at http://zhouxiaotian.github.io/resume/ (项目发布后的地址:http://用户名.github.io/仓库名/请求的文件). Read more at https://help.github.com/pages.
+
+      https://zhouxiaotian.github.io/resume/ 此时这个网址就是我们生成的地址,以后别人通过这个地址就可以访问到我们的项目了(地址的全称：https://zhouxiaotian.github.io/resume/index.html) 如果我们请求的页面是index.html的话可以省略不写,gitHub默认找的页面就是它,如果请求的页面不是index.html,就不可以省略了
+
+      以后看地址依然到:Settings -> GitHub Pages... 中查找
+
+      ->发布成功后，原来的仓库中会多出一个分支 gh-pages，而我们需要展示给别人的项目源代码都在这个分支gh-pages下呢 (以后我们管理项目的源代码都是在这个分支下进行管理)
+
+  ->3)把默认的分支更改为gh-pages，方便后期的管理
+      Settings -> Branches -> Default branch(默认分支) -> 如果默认分支不是gh-pages，我们把它改为gh-pages即可
+
+  ->4)把我们的简历项目源代码上传到gh-pages分支下,把默认生成的替换掉
+     A:把仓库克隆到本地一份,这样本地和远程仓库就保持关联了
+       $ git clone https://github.com/zhouxiaotian/resume.git
+
+     B:把默认生成的原代码在本地删除掉即可,因为我们也不需要使用(.git这个文件不能删除,如果不显示.git把电脑设置为显示隐藏文件)
+
+     C:把自己做的项目的原代码放到本地的指定文件夹
+
+     D:把自己本地文件夹中的内容上传到远程仓库
+       $ git add -A    =>把最新的内容先提交到缓存区
+
+       $ git commit -m'备注信息'   =>把缓存区的内容提交到历史区
+           [提示 please tell me who you are?  Run git config... 两句话,第一句话是在本地注册邮箱,第二句话是在本地注册用户名，邮箱和用户名都是自己的gitHub账号上的即可，把这两句话执行一遍，然后重新的执行 git commit -m'备注' 即可]
+
+       $ git push origin gh-pages  =>把本地历史区的内容提交带远程仓库(重点记住是提交到gh-pages这个分支下,以为发布的项目都在这个分支下管理,不是提交到master分支了)
+
+  ->5)生成二维码  cli.im草料二维码生成
+
+
+4、我们做的HTML页面(不管是移动端还是PC端的)都需要在浏览器中运行
+
+   我们做了一个移动端的页面，我们需要把页面在手机端的浏览器(内置的浏览器、QQ、UC、百度、谷歌、safari...)运行
+
+   移动端的产品分为两种：Native App、Web App(HTML5页面)、混合App(hyBride模式)
+
+   [Native App]
+    IOS开发 安卓开发
+    [弊端]
+    ->不能跨平台,IOS使用的开发技术和安卓使用的开发技术是两套,需要招聘两组人过来开发
+    ->开发成本太大
+    ->我们开发一款IOS APP，我们需要把APP上传到苹果的应用商店，但是上传会有七天的审核期
+    ->如果APP需要升级的话，不能强制升级，需要提示用户来升级，升级到最新的版本完全看的是用户的自主意识，这样的话我们有一个新的东西，不能及时传达给用户
+
+    [优势]
+    ->我们把APP下载下来后是直接的安装到手机的操作系统中的，所以它可以操作手机内部的软件或者硬件,例如：调取摄像头拍照、获取手机的重力感应、读取通讯录或者短信、开启你的GPS...
+    ->它所处理的功能运行起来性能相对来说还是比较的好的
+    ->由于直接操作在系统中，很多功能都可以实现的，例如：离线缓存...
+    ....
+
+
+
+  [web app / html5]
+    [弊端]
+    ->HTML5开发出来的页面不是直接的运行在操作系统中的，而是运行在手机的浏览器中的，如果想要操作手机内部的软件或者硬件，首先需要的是向所在的浏览器发送请求，只有浏览器支持这些功能，我们的HTML才能调取使用(不好意思，大部分移动端的浏览器都不支持这些功能，现在市场上也有使用一系列的组件或者框架来让HTML5完成这些事情的[native.js]，但是兼容和性能方面非常的差)
+    ->相对于Native App来说，我们实现的功能效果不是很流畅，而且很多的功能都实现不了
+
+    [优势]
+    ->跨平台,一套项目适用于所有的平台
+    ->开发成本低
+    ->不需要审核也不需要用户自主性更新
+    ...
+
+  [hyBride App 混合模式APP = Native App + web App]
+    一个APP既有Native App的部分也有HTML的部分
+
+    在移动端我们写的HTML页面不仅仅可以在浏览器中运行还可以在Native App的webView中运行
+
+
+5、移动端事件
+  PC:click、dblclick、mouseover、mouseout、mouseenter、mouseleave、mousemove、mousedown、mouseup、mousewheel、keydown、keyup、focus、blur、load、unload、resize、scroll、error、readystatechange...
+
+    click && dblclick
+      click:鼠标点击,不是单击,只要鼠标按下并且抬起,就会出发一次click事件
+      dblclick:鼠标双击
+      在PC端很少使用双击事件处理一件事情
+
+  以上的所有事件在移动端是否可以使用?
+    1)click在移动端可以使用,而且所有的手机都兼容
+       在PC端click是点击，但是在移动端click属于单击(因为在移动端我们经常会根据用户触发点击的频率来区分是单击还是双击,从而决定进行什么样的操作)
+
+       手机是如何的区分单击还是双击的：在300MS内是否触发第二次点击屏幕的操作，触发了属于双击，没有触发才是单击，也就是在第一次触摸屏幕结束后，浏览器需要等300MS，看看这期间是否触发第二次...
+
+       ==>在移动端使用click事件属于单击，每一次触发都会有300MS的延迟
+
+    2)mouse系列的事件在移动端一般不能用,有的手机支持有的手机不支持
+
+    3)keydown和keyup键盘系列的事件在移动端依然后很多的手机不支持,因为移动端是虚拟的键盘 ==>移动端的键盘事件统一用input事件来代替(文本框中的内容边输入边触发这个事件)
+      userNameInp.onkeyup=function...(用下面的操作替换)
+      userNameInp.oninput=function... <=> userNameInp.addEventListener('input',function...,false);
+
+    4)focus、blur、load、unload、resize、scroll、error、readystatechange...在移动端可以正常的使用,和PC的用法是一样的
+
+
+  移动端针对于手指的操作,制定了两个模块:touch单手指操作、gesture多手指操作
+    [TOUCH]
+      touchstart:手指按下
+      touchmove:在屏幕上移动
+      touchend:离开屏幕
+      touchcancle:由于意外的原因导致当前的操作被意外终止取消(一般不用)
+
+    [GESTURE]
+      gesturestart
+      gesturechange
+      gestureend
+
+    在手机上所有的行为操作基本上都是基于以上的事件模拟出来的
+      点击:手指按下,没有发生移动,手指抬起,触发了一次点击操作
+      滑动:手指按下,发生移动,手指抬起,触发了一次滑动操作
+      由于我们经常会出现手指抖一下或者偏一下的状况,这样触发了touchmove,但是依然应该是点击而不是滑动的操作,所以我们在处理的时候一般都会给一个默认的偏移误差值(30PX/10PX...)
+
+
+6、移动端常用的事件库
+   fastclick.min.js
+   https://github.com/Clouda-team/touch.code.baidu.com 百度云TOUCH手势事件库
+
+   Zepto.js =>移动端的小型jQuery,它的使用语法和实现的核心等都是仿照JQ开发的,Zepto更加的适合移动端的开发:
+    ->Zepto比JQ小很多
+      1)Zepto没有考虑IE的兼容
+      2)Zepto中只实现了JQ部分常用的方法(到底哪些实现哪些没实现,我们平时用的时候默认认为都是实现的,完全按照JQ方法调取,如果没有实现在控制台提示xxx is not a function...)
+
+    ->在Zepto的animate动画中支持CSS3 transform变形属性的操作 (在移动端使用transform变形实现的效果要比传统的css样式属性性能高,因为transform开启了手机的硬件加速功能)
+
+    ->Zepto中不仅提供了on/off这类绑定事件的方法，而且还单独的提供了一系列的方法用来进行移动端的操作(而且这些方法的实现原理都是touchstart/touchmove/touchend来实现的)
+      tap:点击
+      singleTap:单击
+      doubleTap:双击
+      longTap:长按
+      swipe:滑动
+      swipeLeft:向左滑
+      swipeRight:向右滑
+      swipeUp:向上滑
+      swipeDown:向下滑
+
+      $("#box").tap(function(){
+
+      });

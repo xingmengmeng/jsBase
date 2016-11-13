@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .box {
+            /*--让一个盒子在页面水平和垂直都居中的位置--*/
+            /*所有的浏览器都兼容
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin: -100px 0 0 -100px;
+            */
+            /*IE低版本浏览器不兼容
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+            */
+            /*使用CSS3中的FLEX BOX来处理*/
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -100px 0 0 -100px;
+            width: 200px;
+            height: 200px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box"></div>
+<script>
+    var oBox = document.getElementById('box');
+    oBox.onclick = function () {
+        console.log(1);
+    };
+
+    oBox.ondblclick = function () {
+        console.log(2);
+    };
+
+</script>
+</body>
+</html>

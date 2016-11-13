@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>实现三角箭头</title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        /*
+         * 使用 &gt; 来实现
+         * 弊端;
+         *  ->字体大小不好调整为我们需要的箭头尺寸
+         *  ->某些特殊的字体在用户的电脑上没有,实现的效果和原版效果图偏差大
+        */
+        /*.arrow {
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+             font-size: 28px;
+            font-family: sans-serif;
+            background: lightblue;
+        }*/
+
+        /*第二种方案：切图,但是切图的话肯定会消耗流量,而且需要设计师设计出对应的图片才可以的*/
+
+        /*第三种方案：使用CSS3中的transform来处理，在IE低版本的浏览器中不兼容，如果是在移动端需要做这件事情，我们一般都使用这种方案*/
+        /*.arrow {
+            margin: 20px auto;
+            width: 10px;
+            height: 10px;
+            border: 2px solid red;
+            border-bottom: none;
+            border-left: none;
+            -webkit-transform: rotate(45deg);
+        }*/
+
+        /*第四种方案:制作两个三角符号,然后叠加在一起来实现*/
+
+    </style>
+</head>
+<body>
+<!--<div class="arrow">&gt;</div>-->
+<!--<div class="arrow"></div>-->
+</body>
+</html>

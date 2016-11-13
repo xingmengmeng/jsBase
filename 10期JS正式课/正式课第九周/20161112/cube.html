@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <link rel="stylesheet" href="css/cube.css"/>
+    <script>
+        /*根据当前屏幕的宽度动态调整REM和PX换算的比例,比例一但改变,之前在CSS中设置的REM单位的值都会跟着改变->REM响应式布局开发*/
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 640 * 100 + 'px';
+    </script>
+</head>
+<body>
+<section class="cube" id="cube">
+    <div class="box">
+        <img src="img/zf_cube1.png" alt=""/>
+        <img src="img/zf_cube2.png" alt=""/>
+        <img src="img/zf_cube3.png" alt=""/>
+        <img src="img/zf_cube4.png" alt=""/>
+        <img src="img/zf_cube5.png" alt=""/>
+        <img src="img/zf_cube6.png" alt=""/>
+    </div>
+</section>
+
+<script src="js/zepto.min.js"></script>
+<script src="js/cube.js"></script>
+</body>
+</html>

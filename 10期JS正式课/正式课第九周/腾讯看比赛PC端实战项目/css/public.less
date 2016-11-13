@@ -1,0 +1,21 @@
+/*
+ * public.less 编写一些项目中公用的部分,例如:公共的变量、常用的方法等
+*/
+@color-text: #555;
+@color-text-light: #999;
+@color-white: #FFF;
+@color-border: #EEE;
+@color-blue: #346AFF;
+@color-blue-light: #EFF3FF;
+
+@con-width: 1040;
+@img-url: '../img';
+
+/*FUNCTION*/
+.transition(@property:all,@duration:1s,@time-function:linear,@delay:0s) {
+  -webkit-transition: @arguments;
+  -moz-transition: @arguments;
+  -ms-transition: @arguments;
+  -o-transition: @arguments;
+  transition: @arguments;
+}

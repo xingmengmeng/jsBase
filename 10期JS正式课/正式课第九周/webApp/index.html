@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>珠峰培训</title>
+    <!--import needed css-->
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet/less" href="css/index.less">
+    <script src="js/less-2.5.3.min.js"></script>
+
+    <!--REM-->
+    <script>
+        ~function () {
+            var desW = 640;
+            var winW = document.documentElement.clientWidth;
+            if (winW > 640) return;
+            document.documentElement.style.fontSize = winW / desW * 100 + 'px';
+        }();
+    </script>
+</head>
+<body>
+<main class="main">
+    <!--HEADER-->
+    <header class="header">
+        <h1 class="logo">腾讯体育</h1>
+        <a href="#">NBA</a>
+        <a href="javascript:;" id="menu"></a>
+        <a href="#">登录</a>
+    </header>
+
+    <!--NAV-->
+    <nav class="nav" id="nav">
+        <a href="#">NBA</a>
+        <a href="#">CBA</a>
+        <a href="#">英超</a>
+        <a href="#">欧冠</a>
+        <a href="#">亚冠</a>
+        <a href="#">西甲</a>
+        <a href="#">意甲</a>
+        <a href="#">德甲</a>
+        <a href="#">法甲</a>
+        <a href="#">中超</a>
+        <a href="#">NFL</a>
+        <a href="#">综合</a>
+        <a href="#">欧洲</a>
+        <a href="#">社区</a>
+        <a href="#">下载</a>
+    </nav>
+
+    <!--VIDEO-->
+    <section class="video">
+        <video preload="none" controls poster="img/poster.jpg"
+               src="http://123.125.86.19/sports.tc.qq.com/g0022xibxfh.mp4?vkey=BEC5DDEB6ACADB2ACC758928E702BCD7FAC7A2C96B8A2C3DBE2F40F368CAB0D4921B9993B0D297CBF6C8C6E2F54D51988516AF5A350BBD51023028A966038337B6B1E88FC8E829FCEC161ABA858DE1B2403D3A25236E6703&br=60&platform=2&fmt=auto&level=0&sdtfrom=v5010&guid=3cbccfa3afbabc96423508e76e6dd1b5"></video>
+    </section>
+
+    <!--MATCH-->
+    <section class="match">
+        <div class="top">
+            <div class="left">
+                <img src="http://mat1.gtimg.com/sports/nba/logo/1602/9.png" alt=""/>
+                <span>90</span>
+            </div>
+            <div class="center">06月09日 09:00</div>
+            <div class="right">
+                <span>120</span>
+                <img src="http://mat1.gtimg.com/sports/nba/logo/1602/9.png" alt=""/>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="progress"></div>
+        </div>
+        <div class="bottom">
+            <div class="left">3637978</div>
+            <div class="center">NBA季后赛</div>
+            <div class="right">4414263</div>
+        </div>
+    </section>
+
+    <!--PLAYER-->
+    <section class="player">
+        <ul class="wrapper">
+            <li>
+                <a href="#">
+                    <div>
+                        <img src="http://vpic.video.qq.com/39729212/z0020jvzcm6_160_90_3.jpg" alt=""/>
+                        <span class="time">02:32</span>
+                    </div>
+                    <p>美国111-74阿根廷 杜兰特23分考辛斯两双</p>
+                </a>
+            </li>
+        </ul>
+    </section>
+</main>
+
+<!--import needed javascript-->
+<script src="js/zepto.min.js"></script>
+<script src="js/iscroll-5.1.3.min.js"></script>
+<script src="js/ejs.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

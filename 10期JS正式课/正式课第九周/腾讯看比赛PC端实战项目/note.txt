@@ -1,0 +1,200 @@
+1、考试和项目
+  ->Ajax分页考试(这周和下周考试内容是咱们B模块的知识,进入到C模块之后在考试的话，将使用Express+Bootstrap+Angular...等实现)
+
+  ->PC端的项目和自己移动端场景简历
+    =>移动端简历截止到11月20日,各组长届时把自己本组组员做完后生成的网址发给我,参考视频：http://www.zhufengpeixun.com/H5/collegePC/index.html
+
+    =>PC端项目截止到12月11日,也是把项目做完的地址发给我
+
+  ->易企秀(http://www.eqxiu.com/)快速搭建H5场景宣传页面的模板
+    =>设计自己的简历模型,选择自己需要的素材(谷歌控制台-Resources/Application->Frames->Images...)
+
+
+2、这两天的课程
+   腾讯体育看比赛项目的开发:http://kbs.sports.qq.com/
+
+   ->搭建结构
+     我我们使用HTML5标签来搭建结构:header、footer、article、section、nav、main、aside、figure、figcaption、details、summary...
+
+   ->写样式
+     我们尽量使用CSS3中的样式属性,能够用CSS3实现的动画我们不用JS(对于低版本浏览器不兼容CSS3的我们采用优雅降级处理)
+     我们采用LESS开发CSS
+
+   ->写JS实现一些效果
+     我们使用jQuery类库
+     实现局部滚动我们采用iscroll.js插件来做
+
+   ->使用JSONP处理前后端数据的请求,从腾讯的服务器上把数据拿下来,做数据绑定的时候告别字符串拼接使用EJS模板引擎来实现数据绑定
+
+   ->整个项目采用单例模式开发
+
+
+3、做网站的SEO搜索引擎优化
+   ->什么是SEO?
+     在我们的网站中尽量的多设置一些与我们网站内容相关的关键词等,把我们需要重点推广的内容在内容中尽量多曝光...百度、谷歌等搜索引擎会不定时的来我们的网站中抓取内容，把我们网站的内容收录到他们的词库中(抓取内容的东西叫做爬虫，也可以称之为百度的小蜘蛛)
+     当用户在百度中搜一个关键词,如果和我们网站中被百度收录的内容相匹配了，这样的话用户就可以搜索到我们的网站了
+
+   ->SEM：百度竞价
+
+   //->设置标题、关键词、网站描述的
+   <title></title>
+   <meta name="keywords" content=""/>
+   <meta name="description" content=""/>
+
+   //->设置网页标题区域显示的ICON图标
+   <link type="image/x-icon" rel="icon" href=""/>
+
+
+   一个页面中的H1标签是非常重要的部分,一个页面中只能出现一次H1,我们很多时候会把H1中放一段文字,但是文字只给百度的爬虫看,不给用户看,我们需要在样式中把文字隐藏
+
+
+4、LESS
+  CSS:层叠样式表，它不是编程语言，它里面没有类似于JS的变量、函数、判断、循环等语法
+
+  在编程语言中出现的变量、函数等都是非常好的知识，有助于我们的快速开发和降低代码的耦合度。出现了一群有志青年(闲的蛋疼的青年)励志于把CSS也编程编程语言，所以就出现了:less、sass...
+
+  在LESS中定义变量:
+    @color1:green;  ->定义了一个叫做color1的变量并且存储了一个叫做green的值,等价于JS中的var color1='green';
+
+    .box{
+       background:@color1;
+    }
+
+    .box2{
+       background:@color1;
+    }
+
+  在LESS中定义函数:
+    .transition(@property:all,@duration:1s,@time-function:linear,@delay:0s){
+       -webkit-transition:@arguments;
+       -moz-transition:@arguments;
+       -ms-transition:@arguments;
+       -o-transition:@arguments;
+       transition:@arguments;
+    }
+
+
+    .box{
+       .transition(@duration:.5s);
+    }
+    =>
+    .box{
+       -webkit-transition:all .5s linear 0s;
+       -moz-transition:all .5s linear 0s;
+       -ms-transition:all .5s linear 0s;
+       -o-transition:all .5s linear 0s;
+       transition:all .5s linear 0s;
+    }
+
+  函数的更加强大
+    .box{ =>.box(){} 也是定义函数,只不过不需要传递参数
+      width:100px;
+      height:100px;
+    }
+
+    .box2{
+       .box; =>.box();
+    }==>.box2{width:100px;height:100px;}  征用
+
+    .box3:extend(.box){
+    }==>.box,.box3{width:100px;height:100px;} 共用
+
+
+  LESS也要作用域的概念:看到的一个{}就是一个私有的作用域
+    @a:10;
+    .box{
+       @a:100;
+       p{
+          em{
+             width:@a;
+          }
+       }
+    }
+    ==>.box p{}
+    ==>.box p em{}
+  ...
+  如果想研究更多的LESS操作
+  [文章]
+  http://www.zhufengpeixun.com/qianduanjishuziliao/CSS3heHTML5zhuanti/2016-07-22/527.html
+  http://www.zhufengpeixun.com/qianduanjishuziliao/CSS3heHTML5zhuanti/2016-07-22/528.html
+  [视频]
+  http://www.zhufengpeixun.cn/course/22 课时171~173
+
+
+5、LESS的编译
+   在上面说了好多LESS的好处，但是浏览器不能直接的识别LESS的语法，我们需要先把LESS编译为正常的CSS，才可以让浏览器识别
+
+   ->页面导入的依然是LESS文件，我们只是把一个LESS编译的JS引入即可:less-2.5.3.min.js
+   <link rel="stylesheet/less" href="css/index.less"/>
+       <script src="js/less-2.5.3.min.js"></script>
+   (重点：我们导入LESS文件的LINK标签他的REL值是"stylesheet/less")
+   这种方式在开发过程中我们使用还可以,一旦项目上线,我们如果还用这种方式，只要用户打开页面，就会把LESS进行编译，非常的消耗性能
+
+   ->在项目上线的时候，我们把写好的LESS编译为正常的CSS，以后只用编译好的CSS即可
+   使用NODE即可完成编译: lessc xxx.less xxx.min.css -x  编译完成后进行压缩,把LESS代码编译为正常的CSS代码
+
+
+/*LESS常用的方法:
+    darken:在原来颜色样式值的基础上变深
+    lighten:在原来颜色样式值的基础上变浅
+    unit([value],[px|rem]):给一个数字加单位,如果之前的值有单位的话,也相当于给之前的值去掉单位
+*/
+
+
+6、关于重听
+   全日制学员自己这几天思考一下，打算重听的学员，和我说，我和下一期的班主任进行交接(在第七周开始或者之前一两周感觉自己上课有点跟不上了,或者私下练习的时候不明所以，这样的学员我的建议是重听的)
+   重听的同学，你们在十期的考试费，考过哪个发哪个...
+   到新的一期需要重新缴纳800元考试费
+
+   =>不要拼运气，我们要去拼技术，拼自己的作品
+
+
+7、ISCROLL.JS
+  主要实现移动端或者PC的局部滚动的
+
+  ->容器的宽度或者高度是固定的，并且容器里面内容的宽度和高度是大于容器的
+  ->ISCROLL是给当前容器下的第一个子元素实现局部滚动的，其实ISCROLL就是使用JS控制第一个子元素的TOP值在容器中进行改变，从而让我们看到不同部分的内容(类似于轮播图)
+
+  ->当我们配置scrollbars: true的时候，让滚动区域显示滚动条；原理是ISCROLL默认的向当前的容器末尾追加一个新的元素(这个元素就是滚动条)
+    <div class='iScrollVerticalScrollbar iScrollLoneScrollbar'>
+        <!--外层的盒子是滚动条区域-->
+        <div class='iScrollIndicator'>
+            <!--里层的盒子是区域中的那个滚动条-->
+        </div>
+    </div>
+
+    外层盒子上有一个样式position: absolute;，如果容器没有加position: relative;，那么它是相对于BODY定位的，滚动条就不能显示在容器中了，所以我们还需要给容器加position: relative;
+    我们还可以重新的定义滚动条的样式
+    .iScrollIndicator{
+        opacity:0.1;
+    }
+
+  ->我们目前使用的ISCROLL5这个版本,这个版本不兼容IE低版本浏览器,如果想要兼容低版本的话，需要使用ISCROLL3及以下的版本
+    在ISCROLL5这个版本中，我们控制内容区域的上下移动是通过CSS3中的transform:translate和transition动画来完成的(移动端都使用第五个版本)
+
+  ->当容器的宽度改变的时候,ISCROLL会重新的计算滚动条的样式等；但是当里面内容发生改变的时候，滚动条不会进行自动的调整需要我们手动使用JS刷新才可以;
+    menuIScroll.refresh();
+
+8、数据绑定
+   ->字符串拼接
+     弊端:我们还需要把写好的HTML一句句的沾到JS中，这样不仅慢，而且后期代码特别的乱，不利于维护...LOWEST
+
+   ->模板引擎
+     完全前后端分离，数据的获取和绑定就是使用JS来完成
+     kTemplate、do、ejs、jade、vue、angular...
+
+     ejs
+
+
+
+   ->使用后台语言PHP/Python/Ruby/JSP... 这类项目不叫前后端分离，前端只需要负责写样式和一些效果即可,数据绑定是有后台处理的(当然如果点背公司也会让前端学一些后台语言来实现数据绑定)
+
+   通过使用JS做的数据请求和数据绑定，在页面的源代码中都看不到绑定的内容，这样的搜索引擎的小蜘蛛也收录不了这些内容（这种模式下是不能进行深度的SEO推广的）
+   使用后台语言实现数据绑定的，数据的获取和绑定都是交给服务器完成的，这样虽然增加了服务器的压力，但是展示出来的内容在原代码中可以看到，有利于SEO
+
+
+
+
+
+
+

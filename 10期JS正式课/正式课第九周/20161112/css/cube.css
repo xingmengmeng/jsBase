@@ -1,0 +1,89 @@
+html {
+    font-size: 100px; /*我们假设在640PX的设计稿中,1REM=100PX*/
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    background: url("../img/zf_cubeBg.jpg") no-repeat;
+    background-size: cover; /*容器背景图大小设置用COVER比100%会更合适,它会按照背景图片的比例填满整个容器,这样背景图不会变形*/
+
+    /*这个是我们立方体展示的舞台,我们想要看到舞台上的3D魔方需要距离舞台远一些->调整视距*/
+    perspective: 2000px;
+}
+
+.cube .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -2.55rem 0 0 -2.55rem;
+    width: 5.1rem;
+    height: 5.1rem;
+
+    /*想让哪个盒子实现3D变形,我们需要设置3D变形属性*/
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    /*设置3D盒子开始位置的坐标点(中心点):center center 0 是默认值*/
+    -webkit-transform-origin: center center 0;
+    transform-origin: center center 0;
+
+    /*刚开始让盒子旋转一定的角度,这样看到一个立方体的效果*/
+    -webkit-transform: scale(0.6) rotateX(45deg) rotateY(45deg);
+    transform: scale(0.6) rotateX(45deg) rotateY(45deg);
+
+    /*为了能够让其旋转的时候有动画的效果,我们给其加一个过渡动画Transition*/
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+.cube .box img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -2.55rem 0 0 -2.55rem;
+    width: 100%;
+    height: 100%;
+}
+
+/*正面*/
+.cube .box img:nth-child(1) {
+    -webkit-transform: translateZ(2.55rem);
+    transform: translateZ(2.55rem);
+}
+
+/*反面*/
+.cube .box img:nth-child(2) {
+    -webkit-transform: translateZ(-2.55rem) rotateY(180deg);
+    transform: translateZ(-2.55rem) rotateY(180deg);
+}
+
+/*左侧面*/
+.cube .box img:nth-child(3) {
+    -webkit-transform: translateX(-2.55rem) rotateY(-90deg);
+    transform: translateX(-2.55rem) rotateY(-90deg);
+}
+
+/*右侧面*/
+.cube .box img:nth-child(4) {
+    -webkit-transform: translateX(2.55rem) rotateY(90deg);
+    transform: translateX(2.55rem) rotateY(90deg);
+}
+
+/*上侧面*/
+.cube .box img:nth-child(5) {
+    -webkit-transform: translateY(-2.55rem) rotateX(-90deg);
+    transform: translateY(-2.55rem) rotateX(-90deg);
+}
+
+/*下侧面*/
+.cube .box img:nth-child(6) {
+    -webkit-transform: translateY(2.55rem) rotateX(90deg);
+    transform: translateY(2.55rem) rotateX(90deg);
+}

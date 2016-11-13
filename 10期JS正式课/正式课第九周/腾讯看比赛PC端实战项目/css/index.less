@@ -1,0 +1,344 @@
+/*把PUBLIC导入进来,这样就可以使用里面的提供的变量和方法了*/
+/*@import "public";*/
+/*在最后编译的时候,不仅仅把index.less编译了,而且还会把pubic.less中的代码也进行编译了,我们其实是不需要编译public中的代码的*/
+@import (reference) "public";
+
+html, body {
+  width: 100%;
+  height: 100%;
+  color: @color-text;
+  background: #F4F4F4;
+  overflow: hidden;
+}
+
+a, a:hover, a:active {
+  color: @color-text;
+}
+
+/*--HEADER--*/
+.header {
+  @H: 63;
+  height: unit(@H, px);
+  background: @color-white;
+  border-bottom: 1px solid darken(@color-border, 10%);
+
+  .con {
+    margin: 0 auto;
+    padding: 0 10px;
+    width: unit((@con-width)-20, px);
+    height: 100%;
+
+    /*LOGO*/
+    .logo {
+      float: left;
+      margin-right: 60px;
+      width: 160px;
+      height: 100%;
+      background: url("@{img-url}/kbs-logo.png") no-repeat center center; /*@{img-url}相当于把变量存储的值和后面的字符串进行拼接了*/
+      font-size: 0; /*隐藏文字*/
+    }
+
+    /*LOGIN*/
+    .login {
+      float: right;
+      margin-top: unit(((@H)-28)/2, px);
+      width: 46px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      background: @color-blue;
+      border-radius: 3px;
+      color: @color-white;
+      font-size: 12px;
+
+      &:hover {
+        /*&是连字符,代表在当前样式的后面"紧"跟着加什么=>.login:hover*/
+        background: darken(@color-blue, 15%);
+      }
+    }
+
+    /*NAV*/
+    .nav {
+      float: left;
+      height: 100%;
+      a {
+        float: left;
+        width: 90px;
+        height: unit((@H)-8, px);
+        line-height: unit((@H)-8, px);
+        text-align: center;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        font-size: 16px;
+        font-weight: 700;
+
+        &:hover {
+          border-top-color: @color-blue;
+        }
+
+        &.bg {
+          color: @color-white;
+          background: @color-blue;
+        }
+
+        /*企鹅直播*/
+        &.liveQQ {
+          width: unit(@H, px);
+          height: unit(@H, px);
+          line-height: unit(@H, px);
+          border: none;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        /*下载区域*/
+        &.downLoad {
+          position: relative;
+
+          .weChat {
+            .transition(@duration: 0.2s);
+            position: absolute;
+            z-index: 100;
+            top: unit((@H)-4, px);
+            left: unit(-(120-90)/2, px);
+            padding: 0 14px; /*目标值：18px 14px*/
+            width: unit(120-28, px);
+            height: 0; /*目标值：130px*/
+            overflow: hidden;
+            /*background: @color-white;*/
+            /*opacity: 0.5;给当前的盒子以及里面的所有子元素都设置透明度;我们需要使用的是CSS3中的RGBA给背景加透明度;*/
+            /*background: rgba(255, 255, 255, 0.5);在IE低版本浏览器不兼容*/
+            img {
+              display: block;
+              width: 92px;
+              height: 92px;
+            }
+
+            span {
+              display: block;
+              line-height: 19px;
+              text-align: center;
+              font-size: 14px;
+              font-weight: normal;
+            }
+          }
+
+          .weChatBg {
+            .weChat;
+            z-index: 99;
+            background: @color-white;
+            opacity: 0.5;
+            /*filter: alpha(opacity=50);*/
+            filter: ~"alpha(opacity=50)";
+          }
+
+          &:hover {
+            .weChat {
+              padding: 18px 14px;
+              height: 130px;
+            }
+            .weChatBg {
+              .weChat;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.content {
+  margin: 20px auto;
+  width: unit(@con-width, px);
+  height: auto; /*HEIGHT=一屏幕的高度-HEADER的高度-MARGIN值(40)*/
+}
+
+.iScrollIndicator {
+  /*重写ISCROLL滚动条的样式*/
+  opacity: 0.2;
+  filter: ~"alpha(opacity=20)";
+}
+
+/*--MENU--*/
+.menu {
+  position: relative;
+  float: left;
+  width: 198px;
+  height: auto; /*需要在JS中计算:CONTENT的高度-上下边框*/
+  background: @color-white;
+  border: 1px solid @color-border;
+  overflow: hidden;
+
+  a {
+    position: relative; /*如果只设置定位的话,元素虽然变为块状标签但是也脱离了文档流,不写宽度的话只能按照文字内容的宽度适应,所以还是需要把display:block加上的*/
+    display: block;
+    padding-left: 24px;
+    height: 50px;
+    line-height: 50px;
+    border-left: 5px solid transparent;
+    font-size: 16px;
+
+    .arrow {
+      display: none;
+      position: absolute;
+      right: 10px;
+      top: unit((50-12)/2, px);
+      width: 0;
+      height: 0;
+      font-size: 0;
+      border: 6px solid transparent;
+      border-left-color: @color-blue;
+    }
+
+    .arrow:after {
+      /*AFTER伪类的意思:在元素的末尾追加一个新的元素*/
+      .arrow;
+      right: -4px;
+      top: -6px;
+      content: '';
+      border-left-color: @color-blue-light;
+    }
+
+    &:hover, &.bg {
+      color: @color-blue;
+      background: @color-blue-light;
+      border-left-color: @color-blue;
+    }
+
+    &.bg {
+      .arrow {
+        display: block;
+        &:after {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.conRight {
+  float: right;
+  width: 820px;
+  height: 100%;
+}
+
+/*--CALENDAR--*/
+.calendar {
+  position: relative;
+  height: 80px;
+  background: @color-white;
+  border: 1px solid @color-border;
+
+  /*左右按钮*/
+  .btnLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 100%;
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -9px 0 0 -9px;
+      width: 0;
+      height: 0;
+      font-size: 0;
+      border: 9px solid transparent;
+      margin-left: -13.5px;
+      border-right-color: #999;
+    }
+
+    .arrow:after {
+      .arrow;
+      content: '';
+      margin-left: -6px;
+      border-right-color: @color-white;
+    }
+
+    &:hover {
+      .arrow {
+        border-right-color: @color-blue;
+      }
+    }
+  }
+  .btnRight {
+    .btnLeft;
+    left: auto;
+    right: 0;
+
+    .arrow {
+      margin-left: -4.5px;
+      border-left-color: #999;
+      border-right-color: transparent;;
+    }
+
+    .arrow:after {
+      .arrow;
+      margin-left: -12px;
+      border-right-color: transparent;
+      border-left-color: @color-white;
+    }
+
+    &:hover {
+      .arrow {
+        border-right-color: transparent;
+        border-left-color: @color-blue;
+      }
+    }
+  }
+
+  /*日期列表*/
+  .wrapper {
+    position: relative;
+    margin: 0 24px;
+    padding: 5px 0;
+    width: unit(820-2-24-24, px);
+    height: 70px;
+    overflow: hidden;
+
+    .item {
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 7700px; /*在JS中根据A的个数动态计算才可以*/
+      height: 70px;
+
+      a {
+        float: left;
+        width: 110px;
+        height: 100%;
+
+        .week {
+          display: block;
+          margin-top: 9px;
+          line-height: 27px;
+          text-align: center;
+          color: @color-text-light;
+          font-size: 16px;
+        }
+
+        .date {
+          .week;
+          margin-top: 0;
+          color: @color-text;
+        }
+
+        &:hover, &.bg {
+          background: @color-blue-light;
+          .week, .date {
+            color: @color-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+

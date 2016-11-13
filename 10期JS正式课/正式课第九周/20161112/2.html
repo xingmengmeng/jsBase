@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -100px 0 0 -100px;
+            width: 200px;
+            height: 200px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box"></div>
+<script>
+    var oBox = document.getElementById('box');
+    oBox.addEventListener('touchstart', function (e) {
+        //console.dir(e);//->TouchEvent:手指事件对象
+        /*
+         * 在以下的两个属性中存储了当前手指的位置信息。因为可能会出现多个手指操作,为了最后能把每一个手指信息都记录下来,所以提供了touches/changeTouches这两个touchList集合，索引为零这一项是第一根手指的操作信息...
+         * touches:只要手指在屏幕上就可以获取到当前最新的手指位置信息,在touchend事件中我们是无法获取到touches的
+         * changedTouches:如果只有一根手指的操作的话,和touches获取的值是一模一样的,并且在touchend触发的时候,它里面依然存储着手指的相关信息
+         */
+        var point = e.changedTouches[0];
+        this['strX'] = point.pageX;
+        this['strY'] = point.pageY;
+        this['changeX'] = 0;
+        this['changeY'] = 0;
+        this['isMove'] = false;//->是否发生移动,默认是没有发生的
+    }, false);
+    oBox.addEventListener('touchmove', function (e) {
+        var point = e.changedTouches[0];
+        this['changeX'] = point.pageX - this['strX'];
+        this['changeY'] = point.pageY - this['strY'];
+
+        //->验证是否发生过偏移
+        if (Math.abs(this['changeX']) > 10 || Math.abs(this['changeY']) > 10) {
+            this['isMove'] = true;
+        }
+    }, false);
+    oBox.addEventListener('touchend', function (e) {
+        var isMove = this['isMove'];
+        if (!isMove) {
+            //->没有移动就是点击
+            this.style.backgroundColor = 'red';
+            return;
+        }
+        //->滑动
+        this.style.backgroundColor = 'black';
+    }, false);
+</script>
+</body>
+</html>

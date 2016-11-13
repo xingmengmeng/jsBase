@@ -1,0 +1,107 @@
+http://www.zhufengpeixun.cn/article/160
+1、本地存储
+   是把页面中的部分信息存储到客户端本地(存储到当前浏览器中，并且是根据当前页面的域名进行存储的)
+   我使用的是谷歌浏览器,在www.zhufengpeixun.cn这个页面中存储了一条记录:"珠峰成长的秘密：兴盛衰败一挥间，长留慈悲在心念"，这条记录存储到用户电脑的某一个磁盘的某一个文件目录下了(但是我们很难找到)
+
+   我在谷歌浏览器中打开京东,在京东的页面中能否获取到之前的那条记录呢?=>不能
+   我们在谷歌浏览器下存储的,在IE浏览器中能不能获取到?=>不能
+
+
+   看本地存储的信息?
+     谷歌控制台 -> Resources/Application -> Cookies ->
+
+
+
+   需求:我想实现两个页面之间的通信,例如:A页面是一个列表页,B页面是一个详情页,点击A页面中的某一条信息跳转到了B页面,在B页面需要知道点击的是A中的那一条记录
+   ->问号传参
+     在A页面跳转的时候把点击的是那一条的标识通过问号传参的方式传递给B页面,在B页面中解析URL中的参数,这样就可以知道点击的是A中的哪一个了
+     window.location.href='b.html?id=14'  =>queryURLParameter
+
+   ->本地存储
+     在A页面点击的时候,我们把当前点击的信息(例如点击的是那一条的标识)存储到客户端浏览器中的某一个位置,也可以理解为存储到用户的电脑上了
+     进入到B页面的时候也从之前存储的地方把信息获取到即可
+
+   ->iframe
+     在当前的页面中嵌入其它的页面,例如在A页面中通过iframe嵌入百度页面,那么此时A页面叫做父级页面,百度是子级页面(使用iframe实现跨域)
+     [和它类似的叫做单页面应用]
+
+
+2、真实项目中有哪些事情都是由本地存储做的?
+
+3、本地存储
+   [cookie]
+     我们之前给大家讲的五个模型的本地存储都是使用cookie来做(cookie是最常用的)
+     ->cookie兼容所有的浏览器
+     ->cookie存储的大小有限制(一般浏览器的一个源下最多只能存储4KB左右)
+     ->cookie有过期时间(时间我们可以自己设置),超过时间cookie会自动清除
+     ->cookie不稳定,使用浏览器自带的清理功能和360等安全卫士等都能会把cookie清除掉
+     ->用户可能出于安全的角度禁止cookie存储(无痕模式、隐身模式...)
+     ->cookie不是严格的本地存储,需要它的时候,cookie是在客户端和服务器之前来回传递的
+
+   [webStorage:localStorage、sessionStorage]
+     ->它是HTML5中新增加的,不兼容IE6~8
+     ->webStorage存储的大小也有限制(一个源下最多只能存储5MB左右)
+     ->localStorage属于永久存储到本地,只要不手动清除,就不会消失
+     ->localStorage浏览器自带的清除功能和360等不能将它清除
+     ->无痕模式、隐身模式对localStorage没有限制
+     ->webStorage是严格的本地存储和服务器之前没啥关联
+
+     sessionStorage:是本地会话存储,当前页面一但关闭,存储的信息都会清除
+
+   [cache缓存/本地数据库存储]
+     ->一般不用
+     ->Cache storage/Application cache/web SQL/indexedDB
+
+
+服务器存储:
+   session
+   数据库:mysql、sqlserver、oracle、access、db2、mongodb....
+
+
+4、我们使用cookie或者localStorage在本地存储的信息都是明文存储(直接看到存储的内容)，如果存储一些重要的信息(密码)，就会导致信息泄露；所以对于重要的信息我们需要进行加密处理:
+   [可逆转加密]
+
+   [不可逆转的加密] 一但加密将无法解密  MD5加密方式
+    =>hex_md5([value])
+
+
+正则实战应用技巧：格式化时间字符串
+http://old.zhufengpeixun.cn/qianduanjishuziliao/javaScriptzhuanti/2016-07-02/481.html
+
+正则实战应用技巧：获取URL地址栏的参数
+http://old.zhufengpeixun.cn/qianduanjishuziliao/javaScriptzhuanti/2016-07-02/482.html
+
+一些你不知道的JavaScript Console调试命令
+http://old.zhufengpeixun.cn/qianduanjishuziliao/javaScriptzhuanti/2016-07-09/500.html
+
+使用EJS(模板引擎)动态绑定页面中的数据
+http://old.zhufengpeixun.cn/qianduanjishuziliao/javaScriptzhuanti/2016-07-31/542.html
+
+移动端横竖屏的检测
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-08-14/581.html
+
+LESS学习:了解LESS和编译LESS
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-22/527.html
+
+LESS学习:LESS的基础语法
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-22/528.html
+
+一篇文章，让你快速了解Hybrid App开发模式
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-15/511.html
+
+检测浏览器的类型(PC端还是移动端)
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-15/510.html
+
+
+移动端基础知识第一发：常用的META标签
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-06-29/457.html
+
+移动端基础知识第二发：常用的META标签(移动端)
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-02/480.html
+
+
+
+
+
+
+

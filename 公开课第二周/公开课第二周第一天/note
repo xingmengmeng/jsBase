@@ -71,7 +71,7 @@ alert(a) //=>12;
 1）对象==对象 地址  []==[]->false  {}=={}->false
 2)对象==字符串 字符串 []=='';->true
 3)对象==数字  数字 []==0;->true   []==1 ->false;
-4)对象==布尔值   []==false ->true   ![]==false
+4)对象==布尔值   []==false ->true   ![]==false ->true
 5）字符串==数字  数字  ''==0;->true
 6）字符串==布尔  数字  ''==false； -》true
 7）数字==布尔  1==true =》true； 0==false =》true；
